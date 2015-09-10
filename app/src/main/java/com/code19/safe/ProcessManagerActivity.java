@@ -37,8 +37,6 @@ public class ProcessManagerActivity extends Activity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.process_activity);
-
-
         initView();
         initData();
         initEvent();
