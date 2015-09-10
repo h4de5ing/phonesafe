@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--按下的效果-->
+    <item android:drawable="@android:color/darker_gray" android:state_pressed="true"/>
+
+    <!--默认的效果-->
+    <item android:drawable="@android:color/white"/>
+</selector>
+
+
+

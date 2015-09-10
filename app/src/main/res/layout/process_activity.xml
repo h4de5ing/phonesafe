@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/titlebarStyle"
+            android:text="进程管理"
+            />
+
+        <ImageView
+            android:id="@+id/process_iv_clearn"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="8dp"
+            android:src="@mipmap/clean_pressed"/>
+    </RelativeLayout>
+
+    <com.code19.safe.view.PrograssInfoView
+        android:id="@+id/process_piv_processcount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <com.code19.safe.view.PrograssInfoView
+        android:id="@+id/process_piv_memory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <se.emilsjolander.stickylistheaders.StickyListHeadersListView
+        android:id="@+id/process_lv_processlistview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>

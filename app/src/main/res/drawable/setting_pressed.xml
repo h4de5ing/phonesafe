@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+       android:shape="oval">
+    <!--设置一个椭圆，半径是16，宽高32-->
+    <corners android:radius="16dp"/>
+    <size android:height="32dp"/>
+    <size android:width="32dp"/>
+
+    <!--颜色,白色-->
+    <solid android:color="#33ffffff"/>
+</shape>

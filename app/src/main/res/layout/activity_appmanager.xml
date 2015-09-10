@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <TextView
+        style="@style/titlebarStyle"
+        android:text="管理应用程序"/>
+
+    <!--rom部分-->
+    <com.code19.safe.view.PrograssInfoView
+        android:id="@+id/am_piv_rom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp">
+    </com.code19.safe.view.PrograssInfoView>
+
+    <!--sd部分-->
+    <com.code19.safe.view.PrograssInfoView
+        android:id="@+id/am_piv_sd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp">
+    </com.code19.safe.view.PrograssInfoView>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ListView
+            android:id="@+id/am_listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="2dp">
+        </ListView>
+
+        <include layout="@layout/progress_loading"/>
+
+        <TextView
+            android:id="@+id/am_apptype"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:background="#ffd0d1d0"
+            android:text="应用类型"
+            android:visibility="gone"/>
+
+    </FrameLayout>
+</LinearLayout>

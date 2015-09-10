@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/setupTitleSytel"
+        android:text="4.激活设备管理员" />
+
+    <TextView
+        style="@style/NormalTextViewSytel"
+        android:text="激活系统管理员：\n如果手机丢失，可以远程锁屏，远程擦除数据" />
+
+    <RelativeLayout
+        android:onClick="activity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@android:color/darker_gray"
+            android:text="点击激活/取消激活设备管理员"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/admin_activated"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:src="@mipmap/admin_activated" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            style="@style/setupImageStyle"
+            android:src="@mipmap/step_4" />
+
+        <Button style="@style/setupButtonPre" />
+
+        <Button style="@style/setupButtonNext" />
+    </RelativeLayout>
+
+</LinearLayout>

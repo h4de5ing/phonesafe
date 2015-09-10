@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <TextView
+        style="@style/titlebarStyle"
+        android:text="常用号码查询"/>
+
+    <ExpandableListView
+
+        android:id="@+id/nn_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/item_click"
+        android:groupIndicator="@null">
+    </ExpandableListView>
+
+</LinearLayout>

@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Safe</string>
+    <string name="safeSms">you cellphone maybe was lost</string>
+    <string name="action_settings">Settings</string>
+    <string name="home_title">程序员手机安全卫士</string>
+    <string name="home_title_description">手机安全卫士，您的手机保镖，19code.com</string>
+    <string name="device_admin">手机安全卫士</string>
+    <string name="device_admin_description">你的安全由我来掌控</string>
+
+</resources>

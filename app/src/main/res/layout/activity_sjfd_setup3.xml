@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <TextView
+        style="@style/setupTitleSytel"
+        android:text="3.设置安全号码"/>
+
+    <TextView
+        style="@style/NormalTextViewSytel"
+        android:text="SIM卡如果变化：\n报警短信就会发送给安全号码"/>
+
+    <EditText
+        android:id="@+id/setup3_et_safeNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="请输入安全号码"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="selectContact"
+        android:text="选择安全号码"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            style="@style/setupImageStyle"
+            android:src="@mipmap/step_3"
+            />
+
+        <Button
+            style="@style/setupButtonPre"
+            />
+
+        <Button
+            style="@style/setupButtonNext"
+            />
+    </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--按钮按下的效果，加载setting_pressed.xml这个形状-->
+    <item android:drawable="@drawable/setting_pressed" android:state_pressed="true"/>
+    <!--按钮默认的效果，加载setting_normal.xml这个形状-->
+    <item android:drawable="@drawable/setting_normal"/>
+</selector>

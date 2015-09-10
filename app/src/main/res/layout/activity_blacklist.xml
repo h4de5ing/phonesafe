@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/blTvTitle"
+        style="@style/titlebarStyle"
+        android:text="添加黑名单"/>
+
+    <TextView
+        style="@style/NormalTextViewSytel"
+        android:text="电话号码"/>
+
+    <EditText
+        android:id="@+id/bl_et_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="电话号码不能为空"/>
+
+    <RadioGroup
+        android:id="@+id/bl_rg_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/bl_rb_call"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="电话"/>
+
+        <RadioButton
+            android:id="@+id/bl_rb_sms"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="短信"/>
+
+        <RadioButton
+            android:id="@+id/bl_rb_all"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="全部"/>
+    </RadioGroup>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/bl_btn_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:text="添加"/>
+
+        <Button
+            android:id="@+id/bl_btn_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:text="取消"/>
+    </RelativeLayout>
+
+</LinearLayout>

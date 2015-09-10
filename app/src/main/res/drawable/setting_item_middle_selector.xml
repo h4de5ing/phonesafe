@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--中间选项的按下的效果-->
+    <item android:drawable="@drawable/setting_middle_shape" android:state_pressed="true"></item>
+    <!--中间选项默认的效果-->
+    <item android:drawable="@drawable/setting_middle_shape"/>
+</selector>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <TextView
+        style="@style/setupTitleSytel"
+        android:text="5.恭喜您，设置完成"/>
+
+    <CheckBox
+        android:id="@+id/setup5_cb_protecting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="选中开启防盗保护"/>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+
+        <ImageView
+            style="@style/setupImageStyle"
+            android:src="@mipmap/step_5"/>
+
+        <Button
+            style="@style/setupButtonPre"
+            />
+
+        <Button
+            style="@style/setupButtonNext"
+            android:text="设置完成"
+            />
+
+    </RelativeLayout>
+
+</LinearLayout>

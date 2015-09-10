@@ -1,0 +1,77 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+    </style>
+
+    <!--titlebar样式-->
+    <style name="titlebarStyle">
+        <!--设置标题栏，宽，高，背景颜色，内容位置，单行，文本颜色，文本尺寸-->
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:background">#399AD6</item>
+        <item name="android:gravity">center</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <!--设置向导界面的title样式-->
+    <style name="setupTitleSytel" parent="titlebarStyle">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <!--textView默认样式，向导中的文本样式-->
+    <style name="NormalTextViewSytel">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">#99000000</item>
+    </style>
+
+    <!--设置向导界面中textView的样式-->
+    <style name="SetupTextViewStyle" parent="NormalTextViewSytel">
+        <item name="android:textSize">15sp</item>
+        <item name="android:drawableLeft">@mipmap/dialog_title_default_icon</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+    </style>
+
+    <!--Button默认样式-->
+    <style name="NormalButtonStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <!--listView item的样式-->
+    <style name="itemClick">
+        <item name="android:drawable">@drawable/item_click</item>
+    </style>
+
+    <!--设置向导中的居中显示的图片-->
+    <style name="setupImageStyle">
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <!--上一步的button样式-->
+    <style name="setupButtonPre" parent="NormalButtonStyle">
+        <item name="android:text">上一步</item>
+        <item name="android:onClick">onClickPre</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_alignParentLeft">true</item>
+    </style>
+
+    <!--下一步的button样式-->
+    <style name="setupButtonNext" parent="NormalButtonStyle">
+        <item name="android:text">下一步</item>
+        <item name="android:onClick">onClickNext</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_alignParentRight">true</item>
+    </style>
+
+</resources>

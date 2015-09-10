@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--自定义属性-->
+<resources>
+    <!--声明自定义属性-->
+    <declare-styleable name="SettingItemView">
+        <!--title的属性-->
+        <attr name="sivTitle" format="string"/>
+        <!--设置背景 三种first，middle，last，采用枚举的方式-->
+        <attr name="sivBackground">
+            <enum name="first" value="0"/>
+            <enum name="middle" value="1"/>
+            <enum name="last" value="2"/>
+        </attr>
+        <!--控制是否有开关-->
+        <attr name="sivToggle" format="boolean"/>
+    </declare-styleable>
+</resources>
