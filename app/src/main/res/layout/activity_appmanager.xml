@@ -42,6 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="25dp"
             android:background="#ffd0d1d0"
+            android:clickable="true"
             android:text="应用类型"
             android:visibility="gone"/>
 
