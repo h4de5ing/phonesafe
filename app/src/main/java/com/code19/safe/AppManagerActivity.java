@@ -132,7 +132,7 @@ public class AppManagerActivity extends Activity {
 
     //点击item后的效果
     private void showPopup(final AppBean bean, View anchor) {
-        Log.i(TAG, "弹出了" + bean.name + "的样式");
+        //Log.i(TAG, "弹出了" + bean.name + "的样式");
         //设置点击后弹出层的样式
         View contentView = View.inflate(this, R.layout.popup_app_option, null);
 
@@ -153,11 +153,11 @@ public class AppManagerActivity extends Activity {
         contentView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i(TAG, "点击了打开");
+                //Log.i(TAG, "点击了打开");
                 Intent intent = getPackageManager().getLaunchIntentForPackage(bean.packageName);
                 //如果某个应用没有启动，就没有launchIntent,则intent为空
                 if (intent == null) {
-                    Log.i(TAG, "你点击了没有界面的应用" + bean.packageName);
+                    //Log.i(TAG, "你点击了没有界面的应用" + bean.packageName);
                     Toast.makeText(AppManagerActivity.this, "无法启动无界面应用", Toast.LENGTH_SHORT).show();
                     return;
                 }
