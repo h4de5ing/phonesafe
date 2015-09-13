@@ -1,15 +1,18 @@
 package com.code19.safe;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.format.Formatter;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.code19.safe.bean.ProcessBean;
 import com.code19.safe.engine.ProcessProvider;
@@ -17,6 +20,7 @@ import com.code19.safe.view.PrograssInfoView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 
 import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
@@ -37,6 +41,12 @@ public class ProcessManagerActivity extends Activity {
     private StickyListHeadersListView mListView;
     private boolean isShowSystem = true;
     private ProcessListViewAdapter mProcessListViewAdapter;
+    private int mRuningProcessCount;
+    private int mTotalProcessCout;
+    private long mFreeMemory;
+    private long mTotalMemory;
+    private List<ProcessBean> mMSystemDatas;
+    private CheckBox mSelected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,28 +63,61 @@ public class ProcessManagerActivity extends Activity {
         mProcess = (PrograssInfoView) findViewById(R.id.process_piv_processcount);
         mMemory = (PrograssInfoView) findViewById(R.id.process_piv_memory);
         mProcessClean = (ImageView) findViewById(R.id.process_iv_clearn);
+        mSelected = (CheckBox) findViewById(R.id.process_item_cb_selected);
         mProcess.setTitle("进程:");
         mMemory.setTitle("内存:");
 
         mListView = (StickyListHeadersListView) findViewById(R.id.process_lv_processlistview);
     }
 
+    //初始化事件
+    private void initEvent() {
+        //清理按钮的事件
+        mProcessClean.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i(TAG, "点击了清理按钮");
+                long freeMemory = 0;
+                int count = 0;
+                ListIterator<ProcessBean> iterator = mDates.listIterator();
+                while (iterator.hasNext()) {
+                    ProcessBean bean = iterator.next();
+                    if (bean.isSelected) {
+                        //不知道有没有问题 TODO
+                        ProcessProvider.killProcess(ProcessManagerActivity.this, bean.processName);
+                        //从集合中移除
+                        iterator.remove();
+                        mDates.remove(bean);
+                        freeMemory += bean.memory;
+                        count++;
+                    }
+                }
+                if (count > 0) {
+                    String tip = "结束了" + count + "个进程，释放了" + Formatter.formatFileSize(ProcessManagerActivity.this, freeMemory) + "内存";
+                    Toast.makeText(ProcessManagerActivity.this, tip, Toast.LENGTH_SHORT).show();
+                }
+                mProcessListViewAdapter.notifyDataSetChanged();
+            }
+        });
+        //listView的item事件
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.i(TAG, "点击了条目" + position);
+                ProcessBean bean= (ProcessBean) mProcessListViewAdapter.getItem(position);
+                if(bean.name.equals(getPackageName())){
+                    return ;
+                }
+                bean.isSelected=!bean.isSelected;
+                mProcessListViewAdapter.notifyDataSetChanged();
+            }
+        });
+    }
+
     //初始化数据
     private void initData() {
-        //进程数量
-        int runingProcessCount = ProcessProvider.getRuningProcessCount(this); //得到运行中的进程数
-        int totalProcessCout = ProcessProvider.getTotalProcessCout(this); //得到进程的总数
-        mProcess.setProgress((int) (runingProcessCount * 100f / totalProcessCout + 0.5));
-        mProcess.setLeft("运行进程" + runingProcessCount + "个");
-        mProcess.setRight("进程总共" + totalProcessCout + "个");
-
-        //内存容量
-        long freeMemory = ProcessProvider.getFreeMemory(this);//得到剩余内存容量
-        long totalMemory = ProcessProvider.getTotalMemory(this); //得到总的内存容量
-        long usedMemory = totalMemory - freeMemory;
-        mMemory.setProgress((int) (usedMemory * 100f / totalMemory + 0.5));
-        mMemory.setLeft("占用内存" + Formatter.formatFileSize(this, freeMemory));
-        mMemory.setRight("内存总容量:" + Formatter.formatFileSize(this, totalMemory));
+        loadProcessCount();
+        loadMemory();
 
         //加载listview
         mProcessListViewAdapter = new ProcessListViewAdapter();
@@ -85,36 +128,47 @@ public class ProcessManagerActivity extends Activity {
             public void run() {
                 mDates = ProcessProvider.getRunningProcess(ProcessManagerActivity.this);
                 mUserDatas = new ArrayList<ProcessBean>();
-                List<ProcessBean> mSystemDatas = new ArrayList<>();
+                mMSystemDatas = new ArrayList<ProcessBean>();
                 for (ProcessBean bean : mDates) {
                     if (bean.isSystem) {
-                        mSystemDatas.add(bean);
+                        mMSystemDatas.add(bean);
                     } else {
                         mUserDatas.add(bean);
                     }
                 }
-//                mDates.clear();
-//                mDates.add(mUserDatas);
-//                mDates.add(mSystemDatas);
+
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         mProcessListViewAdapter.notifyDataSetChanged();//通知界面数据发生改变
                     }
                 });
+                //清空集合，然后按先放用户应用进程，后放系统进程
+                mDates.clear();
+                mDates.addAll(mUserDatas);
+                mDates.addAll(mMSystemDatas);
             }
         }).start();
 
     }
 
-    //初始化事件
-    private void initEvent() {
-        mProcessClean.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.i(TAG, "点击了清理按钮");
-            }
-        });
+    private void loadMemory() {
+        //内存容量
+        mFreeMemory = ProcessProvider.getFreeMemory(this);
+        mTotalMemory = ProcessProvider.getTotalMemory(this);
+        long usedMemory = mTotalMemory - mFreeMemory;
+        mMemory.setProgress((int) (usedMemory * 100f / mTotalMemory + 0.5));
+        mMemory.setLeft("占用内存" + Formatter.formatFileSize(this, mFreeMemory));
+        mMemory.setRight("内存总容量:" + Formatter.formatFileSize(this, mTotalMemory));
+    }
+
+    private void loadProcessCount() {
+        //进程数量
+        mRuningProcessCount = ProcessProvider.getRuningProcessCount(this);
+        mTotalProcessCout = ProcessProvider.getTotalProcessCout(this);
+        mProcess.setProgress((int) (mRuningProcessCount * 100f / mTotalProcessCout + 0.5));
+        mProcess.setLeft("运行进程" + mRuningProcessCount + "个");
+        mProcess.setRight("进程总共" + mTotalProcessCout + "个");
     }
 
 
@@ -158,7 +212,7 @@ public class ProcessManagerActivity extends Activity {
             if (convertView == null) {
                 holder = new ViewHolder();
                 //拿到converview的样式
-                convertView = View.inflate(ProcessManagerActivity.this, R.layout.process_info, null);
+                convertView = View.inflate(ProcessManagerActivity.this, R.layout.item_process_info, null);
                 convertView.setTag(holder);
                 //给holder绑定控件
                 holder.ivIcon = (ImageView) convertView.findViewById(R.id.process_item_iv_icon);
@@ -190,6 +244,7 @@ public class ProcessManagerActivity extends Activity {
             if (convertView == null) {
                 convertView = new TextView(ProcessManagerActivity.this);
                 convertView.setPadding(4, 4, 4, 4);
+                convertView.setBackgroundColor(Color.GRAY);
             }
             ProcessBean bean = (ProcessBean) getItem(position);
             TextView tv = (TextView) convertView;
@@ -201,7 +256,7 @@ public class ProcessManagerActivity extends Activity {
         public long getHeaderId(int position) {
             //返回头部样式的唯一标记
             ProcessBean bean = (ProcessBean) getItem(position);
-            return bean.isSelected ? 0 : 1;
+            return bean.isSystem ? 0 : 1;
         }
     }
 
