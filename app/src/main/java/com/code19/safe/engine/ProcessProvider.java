@@ -10,7 +10,10 @@ import android.content.pm.PackageManager;
 import android.content.pm.ProviderInfo;
 import android.content.pm.ServiceInfo;
 import android.os.Build;
+import android.os.Debug;
 import android.util.Log;
+
+import com.code19.safe.bean.ProcessBean;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -38,6 +41,7 @@ public class ProcessProvider {
     public static int getRuningProcessCount(Context context) {
         ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
         List<ActivityManager.RunningAppProcessInfo> runningAppProcesses = am.getRunningAppProcesses();
+        Log.i(TAG, "getRuningProcessCount 运行进程数量" + runningAppProcesses.size());
         return runningAppProcesses.size();
     }
 
@@ -97,20 +101,26 @@ public class ProcessProvider {
      *
      * @param context 上下文
      */
-    public static List<PorcessBean> getRunningProcess(Context context) {
+    public static List<ProcessBean> getRunningProcess(Context context) {
         PackageManager pm = context.getPackageManager();//包管理器，用于获取应用信息
 
         ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
-        List<PorcessBean> list = new ArrayList<PorcessBean>(); //用于存储获取到信息
+        List<ProcessBean> list = new ArrayList<ProcessBean>(); //用于存储获取到信息
         List<ActivityManager.RunningAppProcessInfo> runningAppProcesses = am.getRunningAppProcesses();
         ApplicationInfo applicationInfo = null;
         for (ActivityManager.RunningAppProcessInfo runapp : runningAppProcesses) {
-            PorcessBean bean = new PorcessBean();
+            ProcessBean bean = new ProcessBean();
             try {
                 applicationInfo = pm.getApplicationInfo(runapp.processName, 0);
                 bean.name = applicationInfo.loadLabel(pm).toString();  //得到进程的应用名称
-                bean.icon = applicationInfo.loadIcon(pm); //得到进程的图标
+                if (applicationInfo.loadIcon(pm) != null) {
+                    bean.icon = applicationInfo.loadIcon(pm);
+                } else {
+                    Log.i(TAG, "系统的进程没有图标");
+                }
+                //bean.icon = applicationInfo.loadIcon(pm); //得到进程的图标
                 bean.processName = runapp.processName; //得到进程名称
+
                 //判断是否是系统进程
                 int flags = applicationInfo.flags;
                 if ((flags & ApplicationInfo.FLAG_SYSTEM) == ApplicationInfo.FLAG_SYSTEM) {
@@ -118,18 +128,15 @@ public class ProcessProvider {
                 } else {
                     bean.isSystem = false;
                 }
-
             } catch (PackageManager.NameNotFoundException e) {
                 Log.i(TAG, runapp.processName + "应用名找不到");
-                bean.name = applicationInfo.packageName;
-                if (applicationInfo.loadIcon(pm) != null) {
-                    bean.icon = applicationInfo.loadIcon(pm);
-                } else {
-                    Log.i(TAG, "系统的进程没有图标");
-                }
+                //bean.name = applicationInfo.packageName;
+                bean.name = runapp.processName;
                 bean.isSystem = true;
                 //e.printStackTrace();
             }
+            Debug.MemoryInfo memory = am.getProcessMemoryInfo(new int[]{runapp.pid})[0];
+            bean.memory = memory.getTotalPss() * 1024;
             list.add(bean);
         }
         return list;
