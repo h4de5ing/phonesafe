@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_centerInParent="true"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/segement_tv_unlock"
+        android:layout_width="90dp"
+        android:layout_height="36dp"
+        android:background="@drawable/segement_unlock_selector"
+        android:clickable="true"
+        android:gravity="center"
+        android:text="未加锁" />
+
+    <TextView
+        android:id="@+id/segement_tv_lock"
+        android:layout_width="90dp"
+        android:layout_height="36dp"
+        android:background="@drawable/segement_lock_selector"
+        android:clickable="true"
+        android:gravity="center"
+        android:text="已加锁" />
+
+</LinearLayout>

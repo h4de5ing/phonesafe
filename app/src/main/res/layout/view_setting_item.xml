@@ -3,8 +3,7 @@
     android:id="@+id/setting_item_root"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:clickable="true">
+    android:layout_height="wrap_content">
 
     <!--设置页面的选项Item布局，左边是文字，右边是图标-->
 
@@ -13,7 +12,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:text="settingItem选项"/>
+        android:layout_marginLeft="10dp"
+        android:text="settingItem选项"
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
 
     <ImageView
         android:id="@+id/view_tv_icon"
@@ -22,6 +24,7 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="10dp"
-        android:src="@mipmap/on"/>
+        android:focusable="false"
+        android:src="@mipmap/on" />
 
 </RelativeLayout>
