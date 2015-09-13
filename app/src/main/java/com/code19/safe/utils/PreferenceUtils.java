@@ -100,4 +100,50 @@ public class PreferenceUtils {
         editor.putString(key, value);
         editor.commit();
     }
+
+    /**
+     * 获得int类型的值，没有时默认值为-1
+     *
+     * @param context
+     * @param key
+     * @return
+     */
+    public static int getInt(Context context, String key) {
+        return getInt(context, key, -1);
+    }
+
+    /**
+     * 获得String类型的数据
+     *
+     * @param context
+     * @param key
+     * @param defValue
+     * @return
+     */
+    public static int getInt(Context context, String key, int defValue) {
+
+        SharedPreferences sp = getSp(context);
+        return sp.getInt(key, defValue);
+    }
+
+    /**
+     * 设置int类型的值
+     *
+     * @param context 上下文
+     * @param key     存储的键
+     * @param value   存储的值
+     */
+    public static void putInt(Context context, String key, int value) {
+        SharedPreferences sp = getSp(context);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putInt(key, value);
+        editor.commit();
+    }
+
+    private static SharedPreferences getSp(Context context) {
+        if (mPreferences == null) {
+            mPreferences = context.getSharedPreferences("sjws", context.MODE_PRIVATE);
+        }
+        return mPreferences;
+    }
 }
