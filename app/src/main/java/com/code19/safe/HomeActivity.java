@@ -171,11 +171,13 @@ public class HomeActivity extends Activity {
                         preformJcgl();
                         break;
                     case 4:
-                        
+                        PreformLltj();
                         break;
                     case 5:
+                        PreformSjsd();
                         break;
                     case 6:
+                        PreformHcql();
                         break;
                     case 7:
                         performCygj();
@@ -216,6 +218,25 @@ public class HomeActivity extends Activity {
     private void preformJcgl() {
         Intent intent = new Intent(HomeActivity.this, ProcessManagerActivity.class);
         startActivity(intent);
+    }
+
+    //Item 5 流量统计
+    private void PreformLltj() {
+
+
+    }
+
+    //Item 6 手机杀毒
+    private void PreformSjsd() {
+        Intent intent = new Intent(HomeActivity.this, VirusCleanManagerActivity.class);
+        startActivity(intent);
+
+    }
+
+    //Item 7 缓存清理
+    private void PreformHcql() {
+
+
     }
 
     // Item 8 常用工具
