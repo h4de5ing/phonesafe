@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
@@ -13,21 +13,21 @@
         android:gravity="center_vertical"
         android:padding="5dp"
         android:text="初始化密码设置"
-        android:textSize="18sp"/>
+        android:textSize="18sp" />
 
     <EditText
         android:id="@+id/sjfd_init_pwd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="请输入密码"
-        android:password="true"/>
+        android:password="true" />
 
     <EditText
         android:id="@+id/sjfd_init_confirm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="请确认密码"
-        android:password="true"/>
+        android:password="true" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -41,8 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/sjfd_init_ok_selector"
-            android:text="确定"/>
-
+            android:text="确定" />
 
 
         <Button
@@ -51,7 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/sjfd_init_cancel_selector"
-            android:text="取消"/>
+            android:text="取消" />
     </LinearLayout>
 
 </LinearLayout>
