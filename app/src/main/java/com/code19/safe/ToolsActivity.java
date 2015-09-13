@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.code19.safe.engine.SmsProvider;
+import com.code19.safe.view.SettingItemView;
 
 /**
  * Created by Gh0st on 2015/9/4.
@@ -22,6 +23,7 @@ public class ToolsActivity extends Activity {
     private TextView mNormalnumber;
     private TextView mBakupsms;
     private TextView mRestore;
+    private SettingItemView mAppLock;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +38,7 @@ public class ToolsActivity extends Activity {
         mNormalnumber = (TextView) findViewById(R.id.tools_tv_normalnumber);
         mBakupsms = (TextView) findViewById(R.id.tools_tv_bakupsms);
         mRestore = (TextView) findViewById(R.id.tools_tv_restore);
-
+        mAppLock = (SettingItemView) findViewById(R.id.tools_tv_app_lock);
     }
 
     private void initEvent() {
@@ -124,6 +126,13 @@ public class ToolsActivity extends Activity {
                     }
                 });
 
+            }
+        });
+        mAppLock.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ToolsActivity.this, AppLockActivity.class);
+                startActivity(intent);
             }
         });
 
