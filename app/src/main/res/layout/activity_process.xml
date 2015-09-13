@@ -33,9 +33,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
-    <se.emilsjolander.stickylistheaders.StickyListHeadersListView
-        android:id="@+id/process_lv_processlistview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-    
+        <se.emilsjolander.stickylistheaders.StickyListHeadersListView
+            android:id="@+id/process_lv_processlistview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"/>
+
 </LinearLayout>
