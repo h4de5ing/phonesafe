@@ -32,7 +32,6 @@ public class SettingItemView extends RelativeLayout {
     public SettingItemView(Context context, AttributeSet set) {
         super(context, set);
         View.inflate(context, R.layout.view_setting_item, this);//加载xml布局，xml和当前类绑定
-
         mTvTitle = (TextView) findViewById(R.id.view_tv_title);  //布局选项中标题
         mTvIcon = (ImageView) findViewById(R.id.view_tv_icon);   //布局选项中的图标
 
@@ -68,7 +67,7 @@ public class SettingItemView extends RelativeLayout {
      * 开关的方法，开的时候就关，关的时候就开
      */
     public void toggle() {
-        mTvIcon.setImageResource(isOpen ? R.mipmap.on : R.mipmap.off); //设置图标
+        mTvIcon.setImageResource(isOpen ? R.mipmap.off : R.mipmap.on); //设置图标
         isOpen = !isOpen; //重置状态
     }
 

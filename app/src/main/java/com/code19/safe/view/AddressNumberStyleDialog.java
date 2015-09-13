@@ -50,14 +50,14 @@ public class AddressNumberStyleDialog extends Dialog {
 
     public void setAdapter(ListAdapter adapter) {
         this.mAdapter = adapter;
-        if (mListener != null) {
+        if (mListview != null) {
             mListview.setAdapter(adapter);
         }
     }
 
     public void setOnItemClickListener(AdapterView.OnItemClickListener listener) {
         this.mListener = listener;
-        if (mListener != null) {
+        if (mListview != null) {
             mListview.setOnItemClickListener(listener);
         }
     }
