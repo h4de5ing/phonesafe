@@ -44,6 +44,9 @@
     <style name="NormalButtonStyle">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/btn_pressed_style</item>
+        <item name="android:textColor">#0A9D7E</item>
+        <item name="android:textSize">16sp</item>
     </style>
 
     <!--listView item的样式-->
