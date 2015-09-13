@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:code19="http://schemas.android.com/apk/res-auto"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
+    xmlns:code19="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <!--设置中心的布局，加载的是SettingItemView-->
     <!--标题部分-->
     <TextView
         style="@style/titlebarStyle"
-        android:text="设置中心"/>
+        android:text="设置中心" />
 
     <!--自动更新的设置-->
     <com.code19.safe.view.SettingItemView
@@ -19,29 +19,29 @@
         android:layout_marginTop="10dp"
         code19:sivBackground="first"
         code19:sivTitle="自动更新"
-        code19:sivToggle="true"
-        />
+        code19:sivToggle="true" />
 
     <com.code19.safe.view.SettingItemView
         android:id="@+id/setting_item_blacklist"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         code19:sivBackground="middle"
         code19:sivTitle="骚扰拦截"
-        code19:sivToggle="true"/>
+        code19:sivToggle="true" />
 
     <com.code19.safe.view.SettingItemView
         android:id="@+id/setting_item_numberAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         code19:sivBackground="middle"
-        code19:sivTitle="归属地显示设置"/>
+        code19:sivTitle="归属地显示设置"
+        code19:sivToggle="true" />
 
     <com.code19.safe.view.SettingItemView
         android:id="@+id/setting_item_numberAddressStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         code19:sivBackground="last"
-        code19:sivTitle="归属地风格设置"/>
+        code19:sivTitle="归属地风格设置"
+        code19:sivToggle="false" />
 </LinearLayout>
