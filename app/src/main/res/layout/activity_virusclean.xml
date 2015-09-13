@@ -7,13 +7,14 @@
     <TextView
         style="@style/titlebarStyle"
         android:text="病毒清理" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_alignParentBottom="true"
         android:background="#0BA683"
         android:gravity="center_vertical"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/btnDelete"
