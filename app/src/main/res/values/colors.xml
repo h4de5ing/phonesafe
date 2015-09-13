@@ -7,4 +7,5 @@
     <color name="dark_background">#FF202020</color>
     <color name="floating_action_button_disabled">#ff0b2535</color>
     <color name="ghost">#247ab0</color>
+    <color name="item_selected">#88459FD7</color>
 </resources>
