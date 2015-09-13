@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.code19.safe">
+<manifest package="com.code19.safe"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
@@ -48,6 +47,7 @@
         <activity android:name=".AppManagerActivity" />
         <activity android:name=".ProcessManagerActivity" />
         <activity android:name=".VirusCleanManagerActivity" />
+        <activity android:name=".AppLockActivity" />
         <!-- 激活管理员receiver -->
         <receiver
             android:name=".receiver.SafeAdminReceiver"
@@ -88,7 +88,7 @@
         <!--黑名单，监听短信，-->
         <service android:name=".service.CallSmsSafeService" />
         <!--归属地查询，监听来电-->
-        <service android:name=".service.NumBerAddressService" />
+        <service android:name=".service.NumberAddressService" />
         <!--定位服务-->
         <service android:name=".service.GPSService" />
         <!--保护服务-->
