@@ -9,7 +9,7 @@ import android.support.annotation.Nullable;
  * Created by Gh0st on 2015/9/10.
  * 15:54
  */
-public class NumBerAddressService extends Service {
+public class NumberAddressService extends Service {
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
