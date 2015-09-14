@@ -1,45 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/com.code19.safe"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
     <TextView
         style="@style/titlebarStyle"
-        android:text="病毒清理" />
+        android:text="手机杀毒" />
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:layout_alignParentBottom="true"
-        android:background="#0BA683"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:layout_height="150dp">
 
-        <Button
-            android:id="@+id/btnDelete"
-            android:layout_width="0px"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/btn_pressed_style"
-            android:text="删除"
-            android:textColor="#FDFEFE"
-            android:textSize="16sp" />
+    </FrameLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="#399AD6"
+    android:gravity="center">
 
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="#DADBDA" />
+    <com.github.lzyzsd.circleprogress.ArcProgress
+        android:id="@+id/arc_progress"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="50dp"
+        custom:arc_bottom_text="扫描中"
+        custom:arc_progress="55" />
 
-        <Button
-            android:id="@+id/btnSelectAll"
-            android:layout_width="0px"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/btn_pressed_style"
-            android:text="全选"
-            android:textColor="#FDFEFE"
-            android:textSize="16sp" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:singleLine="true"
+        android:text="包名"
+        android:textColor="@android:color/white" />
+</RelativeLayout>
+
+
     </LinearLayout>
-
-</LinearLayout>

@@ -2,6 +2,7 @@ package com.code19.safe;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -12,6 +13,7 @@ import android.widget.TextView;
  */
 public class SegementView extends LinearLayout implements View.OnClickListener {
 
+    private static final String TAG = "SegementView";
     private TextView mTvLock;
     private TextView mTvUnlock;
     private boolean isLocked;
@@ -49,6 +51,7 @@ public class SegementView extends LinearLayout implements View.OnClickListener {
                 //点击上锁的
                 mTvLock.setSelected(true);
                 mTvUnlock.setSelected(false);
+                Log.i(TAG, "未上锁是否选中" + mTvLock.isSelected());
                 if (mListener != null) {
                     mListener.onSelected(true);
                 }
@@ -58,10 +61,12 @@ public class SegementView extends LinearLayout implements View.OnClickListener {
         } else if (v == mTvUnlock) {
             if (isLocked) {
                 mTvLock.setSelected(false);
-                mTvUnlock.setSelected(false);
+                mTvUnlock.setSelected(true);
+                if (mListener != null) {
+                    mListener.onSelected(false);
+                }
+                isLocked = false;
             }
-            isLocked = false;
-
         }
     }
 

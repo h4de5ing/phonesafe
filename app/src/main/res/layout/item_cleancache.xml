@@ -1,6 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</LinearLayout>
+
+    <ImageView
+        android:id="@+id/item_clean_icon"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_centerVertical="true"
+        android:src="@mipmap/ic_launcher" />
+
+    <ImageView
+        android:id="@+id/item_clean_clean"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:background="@drawable/item_btn_clean_selector"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/item_clean_icon"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/item_clean_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="应用包名" />
+
+        <TextView
+            android:id="@+id/item_clean_size"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="清理的内存大小" />
+    </LinearLayout>
+
+
+</RelativeLayout>

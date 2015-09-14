@@ -12,5 +12,12 @@ public class AppLockActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app_lock);
+        initView();
+
+    }
+
+    //初始化视图
+    private void initView() {
+
     }
 }

@@ -1,6 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/titlebarStyle"
+        android:text="缓存清理" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:background="#399AD6">
+        <!--扫描部分-->
+        <RelativeLayout
+            android:id="@+id/cc_scan_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:visibility="visible">
+            <!--扫描框-->
+            <RelativeLayout
+                android:id="@+id/cc_scan_part"
+                android:layout_width="70dp"
+                android:layout_height="70dp">
+                <!--扫描的图片-->
+                <ImageView
+                    android:id="@+id/cc_scan_iv_con"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:background="@mipmap/scan_bg"
+                    android:src="@mipmap/ic_launcher" />
+                <!--扫描的线-->
+                <ImageView
+                    android:id="@+id/cc_scan_iv_line"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@mipmap/scan_line" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/cc_scan_part"
+                android:orientation="vertical">
+
+                <ProgressBar
+                    android:id="@+id/cc_scan_pb_progress"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:progress="30"
+                    android:progressDrawable="@drawable/progress_horizontal" />
+
+                <TextView
+                    android:id="@+id/cc_scan_tv_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:text="清理缓存的app" />
+
+                <TextView
+                    android:id="@+id/cc_scan_tv_size"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:text="缓存的大小" />
+            </LinearLayout>
+        </RelativeLayout>
+        <!--结果部分-->
+        <RelativeLayout
+            android:id="@+id/cc_result_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@android:color/holo_red_dark"
+            android:visibility="gone">
+
+            <Button
+                android:id="@+id/cc_result_btn_clean"
+                style="@style/NormalButtonStyle"
+                android:layout_alignParentRight="true"
+                android:text="快速扫描"
+                android:textColor="#FDFEFE"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/cc_result_tv_result"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/cc_result_btn_clean"
+                android:text="清理缓存应用0个，共0.00B,如果文字很多会显示什么效果" />
+
+        </RelativeLayout>
+
+    </FrameLayout>
+
+    <!--listview部分-->
+    <ListView
+        android:id="@+id/cc_listview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <Button
+        android:id="@+id/cc_btn_clean"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:text="一键清理" />
 
 </LinearLayout>

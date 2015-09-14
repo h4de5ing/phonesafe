@@ -39,9 +39,15 @@ public class HomeActivity extends Activity {
             "软件管家", "进程管理", "流量统计", "手机杀毒", "缓存清理", "常用工具"};
     private final static String[] DESCS = new String[]{"远程定位手机", "全面拦截骚扰",
             "管理您的软件", "管理运行进程", "流量一目了然", "病毒无处藏身", "系统快如火箭", "工具大全"};
-    private final static int[] ICONS = new int[]{R.mipmap.ed,
-            R.mipmap.e5, R.mipmap.es, R.mipmap.ej, R.mipmap.et,
-            R.mipmap.ec, R.mipmap.ez, R.mipmap.ew};
+    private final static int[] ICONS = new int[]{
+            R.mipmap.home_item_lost,
+            R.mipmap.home_item_blacklist,
+            R.mipmap.home_app_manager,
+            R.mipmap.home_item_process_manager,
+            R.mipmap.home_item_gprs,
+            R.mipmap.home_item_virus_claen,
+            R.mipmap.home_item_cache_clean,
+            R.mipmap.home_item_comm_tools};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -235,6 +241,8 @@ public class HomeActivity extends Activity {
 
     //Item 7 缓存清理
     private void PreformHcql() {
+        Intent intent = new Intent(HomeActivity.this, CleanCacheActivity.class);
+        startActivity(intent);
 
 
     }

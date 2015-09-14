@@ -54,5 +54,5 @@
         android:textSize="20sp"
         code19:sivBackground="last"
         code19:sivTitle="程序锁"
-        code19:sivToggle="true" />
+        code19:sivToggle="false" />
 </LinearLayout>

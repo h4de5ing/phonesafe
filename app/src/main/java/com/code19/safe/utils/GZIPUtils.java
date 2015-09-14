@@ -62,7 +62,7 @@ public class GZIPUtils {
     }
 
     //释放文件输入输出流
-    private static void release(Closeable io) {
+    public static void release(Closeable io) {
         if (io != null) {
             try {
                 io.close();

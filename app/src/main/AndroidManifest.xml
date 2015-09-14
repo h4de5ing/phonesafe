@@ -48,6 +48,7 @@
         <activity android:name=".ProcessManagerActivity" />
         <activity android:name=".VirusCleanManagerActivity" />
         <activity android:name=".AppLockActivity" />
+        <activity android:name=".CleanCacheActivity" />
         <!-- 激活管理员receiver -->
         <receiver
             android:name=".receiver.SafeAdminReceiver"

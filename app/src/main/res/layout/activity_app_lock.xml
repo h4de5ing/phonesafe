@@ -10,8 +10,10 @@
         android:background="#399AD6">
 
         <com.code19.safe.SegementView
+            android:id="@+id/app_lock_toggle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true" />
     </RelativeLayout>
+
 </LinearLayout>

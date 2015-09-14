@@ -11,7 +11,6 @@ import android.os.Message;
 import android.util.Log;
 import android.widget.TextView;
 
-import com.code19.safe.utils.GZIPUtils;
 import com.code19.safe.utils.PackageInfoUtils;
 
 import org.apache.http.HttpResponse;
@@ -22,9 +21,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+
+import static com.code19.safe.utils.GZIPUtils.Unzip;
+import static com.code19.safe.utils.GZIPUtils.copyAssets2Files;
+import static com.code19.safe.utils.GZIPUtils.release;
 
 public class SplashActivity extends Activity {
     private static final String TAG = "SplashActivity";
@@ -32,8 +35,11 @@ public class SplashActivity extends Activity {
     private static final int UPDATELATER = 200;//用户点了稍后更新
     private static final int UPDATE = 300;//版本不一致时，需要更新
     private static final int NETERROR = 404;//网络异常
+    private static final String ANTIVIRUSDB = "antivirus.db"; //病毒数据库
+    private static final String COMMONNUMDB = "commonnum.db"; //常用号码数据库
+    private static final String ADDRESSDB = "address.zip"; //号码归属地号码数据库
+
     TextView tv_version;
-    String versionName;
 
     private Handler mHandler = new Handler() {
         @Override
@@ -73,16 +79,18 @@ public class SplashActivity extends Activity {
         load2home();
 
         // 拷贝号码归属地数据库
-       // copyNumberAddressDB();
+        // copyNumberAddressDB();
 
         // 拷贝常用号码数据库
         //copyCommonNumberDB();
+        //拷贝病毒数据库文件
+        copyVirusDB();
     }
 
-    // 拷贝号码归属地数据库
+    // 1.拷贝号码归属地数据库
     private void copyNumberAddressDB() {
         //每次初始化数据，判断文件是否存在
-        mFile = new File(getFilesDir(), "address.db");
+        mFile = new File(getFilesDir(), ANTIVIRUSDB);
         if (mFile.exists()) {
             Log.i(TAG, "文件存在，不需要解压了");
             return;//如果文件存在不需要解压，就不需要下面的了
@@ -92,41 +100,69 @@ public class SplashActivity extends Activity {
             @Override
             public void run() {
                 Log.i(TAG, "子线程准备执行解压号码归属地文件");
-                //GZIPUtils gzipUtils = new GZIPUtils();
                 FileOutputStream os = null;
                 try {
                     os = new FileOutputStream(mFile);
-                    GZIPUtils.Unzip(getApplicationContext().getResources().getAssets().open("address.zip"), os);
-                    Log.i(TAG, "文件解压成功");
-                } catch (FileNotFoundException e) {
-                    Log.i(TAG, "zip文件找不到");
-                    //e.printStackTrace();
-                } catch (IOException e) {
-                    Log.i(TAG, "zip文件输入流错误");
-                    //e.printStackTrace();
+                    Unzip(getApplicationContext().getResources().getAssets().open(ADDRESSDB), os);
+                    Log.i(TAG, "号码归属文件解压成功");
+                } catch (Exception e) {
+                    Log.i(TAG, "zip文件错误,尝试从网络获取...");
+                } finally {
+                    release(os);
                 }
             }
         }).start();
 
     }
 
-    // 拷贝常用号码数据库
+    // 2.拷贝常用号码数据库
     private void copyCommonNumberDB() {
+        File localFile = new File(getFilesDir(), COMMONNUMDB);
+        if (localFile.exists()) {
+            Log.i(TAG, "文件存在，就不拷贝了...");
+            return;
+        }
         new Thread(new Runnable() {
             @Override
             public void run() {
-                File localFile = new File(getFilesDir(), "commonnum.db");
-                if (localFile.exists()) {
-                    Log.i(TAG, "文件存在，就不拷贝了...");
-                    return;
-                }
-                Log.i(TAG, "子线程准备拷贝常用号码数据库到应用目录");
+
+                FileOutputStream os = null;
                 try {
-                    FileOutputStream os = new FileOutputStream(localFile);
-                    GZIPUtils.copyAssets2Files(getApplicationContext().getResources().getAssets().open("commonnum.db"), os);
+                    os = new FileOutputStream(new File(getFilesDir(), COMMONNUMDB));
+                    copyAssets2Files(getApplicationContext().getResources().getAssets().open(COMMONNUMDB), os);
                 } catch (IOException e) {
-                    Log.i(TAG, "资产文件找不到");//如果找不到可以尝试从服务器上获取
-                    //e.printStackTrace();
+                    Log.i(TAG, "常用号码数据库文件找不到,就可以尝试从服务器获取");//如果找不到可以尝试从服务器上获取
+                } finally {
+                    release(os);
+                }
+            }
+        }).start();
+    }
+
+    //3.拷贝病毒特征数据库
+    private void copyVirusDB() {
+        //拷贝前判断文件是否存在，如果存在就不拷贝了，节省资源
+        File file = new File(getFilesDir(), ANTIVIRUSDB);
+        if (file.exists()) {
+            Log.i(TAG, "病毒库已经存在，不需要拷贝了 ");
+            return;
+        }
+        //耗时操作需要在子线程中执行
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                FileOutputStream os = null;
+                InputStream is = null;
+                try {
+                    is = getResources().getAssets().open(ADDRESSDB);
+                    os = new FileOutputStream(new File(getFilesDir(), ANTIVIRUSDB));
+                    copyAssets2Files(is, os);
+                    Log.i(TAG, "病毒特征库拷贝成功");
+                } catch (IOException e) {
+                    Log.i(TAG, "病毒特征库拷贝失败,尝试从服务器获取... ");
+                } finally {
+                    release(os);
+                    release(is);
                 }
             }
         }).start();
@@ -135,7 +171,6 @@ public class SplashActivity extends Activity {
     //检测版本
     private void checkVersion() {
         new Thread(new CheckVersionTask()).start();
-
     }
 
     //加载到主页
