@@ -2,12 +2,12 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 22
-    buildToolsVersion "22.0.1"
+    buildToolsVersion '19.1.0'
 
     defaultConfig {
         applicationId "com.code19.safe"
         minSdkVersion 14
-        targetSdkVersion 22
+        targetSdkVersion 19
         versionCode 1
         versionName "毕业设计专用版"
     }

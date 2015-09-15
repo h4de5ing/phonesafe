@@ -13,6 +13,9 @@
     <uses-permission android:name="android.permission.RECEIVE_MMS" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.GET_PACKAGE_SIZE" />
+    <uses-permission android:name="android.permission.CLEAR_APP_CACHE" />
+
 
     <application
         android:allowBackup="true"
@@ -49,6 +52,7 @@
         <activity android:name=".VirusCleanManagerActivity" />
         <activity android:name=".AppLockActivity" />
         <activity android:name=".CleanCacheActivity" />
+
         <!-- 激活管理员receiver -->
         <receiver
             android:name=".receiver.SafeAdminReceiver"

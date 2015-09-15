@@ -2,13 +2,17 @@ package com.code19.safe;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.IPackageDataObserver;
+import android.content.pm.IPackageStatsObserver;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.PackageStats;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.text.format.Formatter;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -21,6 +25,8 @@ import android.widget.TextView;
 
 import com.code19.safe.bean.CacheBean;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +36,7 @@ import java.util.List;
  */
 public class CleanCacheActivity extends Activity {
 
+    private static final String TAG = "CleanCacheActivity";
     private RelativeLayout mRlScanPart;
     private RelativeLayout mRlScanResult;
     private ImageView mIvScanIcon;
@@ -196,14 +203,23 @@ public class CleanCacheActivity extends Activity {
 
             //设置进度条的最大值
             max = packages.size();
-            //mPbScanProgress.setMax(max);
             for (PackageInfo pkg : packages) {
-                if (!isRunning) {
-                    break;
+                Log.i(TAG, "doInBackground "+pkg.packageName);
+//                if (!isRunning) {
+//                    break;
+//                }
+                //progress++;
+
+                try {
+                    Method method = mPm.getClass().getDeclaredMethod("getPackageSizeInfo", String.class, IPackageStatsObserver.class);
+                    method.invoke(mPm, pkg.packageName, mStatsObserver);
+                } catch (NoSuchMethodException e) {
+                    e.printStackTrace();
+                } catch (InvocationTargetException e) {
+                    e.printStackTrace();
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
                 }
-                progress++;
-   
-                //mPm.getClass().getDeclaredMethod("getPackageSizeInfo", String.class, IPackageStatsObserver.class);
 
             }
 
@@ -216,6 +232,42 @@ public class CleanCacheActivity extends Activity {
             super.onPostExecute(aVoid);
         }
 
+    }
+
+    private final IPackageStatsObserver.Stub mStatsObserver = new IPackageStatsObserver.Stub() {
+        public void onGetStatsCompleted(PackageStats stats, boolean succeeded) {
+            long cacheSize = stats.cacheSize;
+            String packageName = stats.packageName;
+
+
+            Log.d(TAG, "package : " + packageName);
+            Log.d(TAG, "cacheSize : " + cacheSize);
+            Log.d(TAG, "---------------------------------");
+//
+//            try {
+//                ApplicationInfo applicationInfo = mPm.getApplicationInfo(
+//                        packageName, 0);
+//
+//                String name = applicationInfo.loadLabel(mPm).toString();
+//                Drawable icon = applicationInfo.loadIcon(mPm);
+//
+//                CacheBean bean = new CacheBean();
+//                bean.cacheSize = cacheSize;
+//                bean.name = name;
+//                bean.icon = icon;
+//                bean.packageName = packageName;
+//                mTask.updateProgress(bean);
+//            } catch (NameNotFoundException e) {
+//                e.printStackTrace();
+//            }
+        }
+    };
+
+    private class ClearCacheObserver extends IPackageDataObserver.Stub {
+        public void onRemoveCompleted(final String packageName,
+                                      final boolean succeeded) {
+            Log.d("test------------", "onRemoveCompleted: " + packageName + "  " + succeeded);
+        }
     }
 
 }

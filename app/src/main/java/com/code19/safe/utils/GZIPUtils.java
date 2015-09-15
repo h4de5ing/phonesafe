@@ -46,7 +46,7 @@ public class GZIPUtils {
     public static void copyAssets2Files(InputStream is, OutputStream os) {
         try {
             byte[] b = new byte[1024];
-            int len = 0;
+            int len = -1;
             while ((len = is.read(b)) != -1) {
                 os.write(b, 0, len);
                 os.flush();

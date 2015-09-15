@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:custom="http://schemas.android.com/com.code19.safe"
+    xmlns:code19="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -11,32 +11,88 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp">
+        android:layout_height="150dp"
+        android:background="#399AD6">
 
+        <!--病毒扫描进度部分-->
+        <RelativeLayout
+            android:id="@+id/aa_scan_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible">
+
+            <com.github.lzyzsd.circleprogress.ArcProgress
+                android:id="@+id/aa_scan_arc_progress"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_centerInParent="true"
+                code19:arc_bottom_text="扫描中..."
+                code19:arc_progress="55"
+                code19:arc_suffix_text_padding="10dp"
+                code19:arc_text_color="#ffffff" />
+
+            <TextView
+                android:id="@+id/aa_scan_packagename"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="包名"
+                android:textColor="@android:color/white" />
+        </RelativeLayout>
+        <!--病毒扫描结果部分-->
+        <RelativeLayout
+            android:id="@+id/aa_result_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/aa_tv_result"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:text="扫描结果"
+                android:textColor="@android:color/white" />
+
+            <Button
+                android:id="@+id/aa_btn_rescan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:text="重新扫描"
+                android:textColor="@android:color/white" />
+        </RelativeLayout>
+        <!--动画部分-->
+        <LinearLayout
+
+            android:id="@+id/aa_animatator_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/holo_red_dark"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/aa_animatator_iv_left"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@mipmap/bw" />
+
+            <ImageView
+                android:id="@+id/aa_animatator_iv_right"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@mipmap/empty" />
+        </LinearLayout>
     </FrameLayout>
-    <RelativeLayout
+
+    <ListView
+        android:id="@+id/aa_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-    android:layout_gravity="center"
-    android:background="#399AD6"
-    android:gravity="center">
-
-    <com.github.lzyzsd.circleprogress.ArcProgress
-        android:id="@+id/arc_progress"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginLeft="50dp"
-        custom:arc_bottom_text="扫描中"
-        custom:arc_progress="55" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:singleLine="true"
-        android:text="包名"
-        android:textColor="@android:color/white" />
-</RelativeLayout>
-
-
-    </LinearLayout>
+        android:layout_height="match_parent" />
+</LinearLayout>

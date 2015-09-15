@@ -1,7 +1,5 @@
 package com.code19.safe.utils;
 
-import android.util.Log;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.MessageDigest;
@@ -21,14 +19,14 @@ public class Md5Utils {
             byte[] digest = instance.digest(pwd.getBytes());
             StringBuffer sb = new StringBuffer();
             for (byte b : digest) {
-                int r = b & 0xff;//
+                int r = b & 0xff;
                 String hex = Integer.toHexString(r);
                 if (hex.length() == 1) {
                     hex = 0 + hex;
                 }
                 sb.append(r);
             }
-            Log.i(TAG, pwd + "加密后" + sb);
+            return sb.toString();
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
@@ -45,11 +43,21 @@ public class Md5Utils {
                 digester.update(bytes, 0, byteCount);
             }
             byte[] digest = digester.digest();
+            StringBuffer sb = new StringBuffer();
+            for (byte b : digest) {
+                int r = b & 0xff;
+                String hex = Integer.toHexString(r);
+                if (hex.length() == 1) {
+                    hex = 0 + hex;
+                }
+                sb.append(hex);
+            }
+            return sb.toString();
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return digester.toString();
+        return null;
     }
 }

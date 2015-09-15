@@ -1,6 +1,7 @@
 package com.code19.safe.engine;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.util.Log;
@@ -71,4 +72,38 @@ public class AppProvider {
     }
 
 
+    public static List<AppBean> getAllLauncherApps(Context context) {
+        List<AppBean> list = new ArrayList<AppBean>();
+        //获得包管理器
+        sPackageManager = context.getPackageManager();
+        List<ApplicationInfo> installedApplications = sPackageManager.getInstalledApplications(sPackageManager.GET_UNINSTALLED_PACKAGES);
+        for (ApplicationInfo app : installedApplications) {
+            //创建appBean，用于存储应用的 icon,name,packagename,size,isinstallsd,issystem等信息
+            Intent intent = sPackageManager.getLaunchIntentForPackage(app.packageName);
+            if (intent == null) {
+                continue;
+            }
+            AppBean appBean = new AppBean();
+            appBean.icon = app.loadIcon(sPackageManager);
+            appBean.name = (String) app.loadLabel(sPackageManager);
+            appBean.packageName = app.packageName;
+            appBean.size = new File(app.sourceDir).length();
+            int flags = app.flags;//得到当前应用的flags能力
+            //将当前应用的能力与上系统的所有能力，取出当前应用的能力
+            if ((flags & ApplicationInfo.FLAG_SYSTEM) == ApplicationInfo.FLAG_SYSTEM) {
+                appBean.isSystem = true;
+            } else {
+                appBean.isSystem = false;
+            }
+
+            if ((flags & ApplicationInfo.FLAG_EXTERNAL_STORAGE) == ApplicationInfo.FLAG_EXTERNAL_STORAGE) {
+                appBean.inInstallSD = true;
+            } else {
+                appBean.inInstallSD = false;
+            }
+            list.add(appBean);
+        }
+        return list;
+
+    }
 }

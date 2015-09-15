@@ -42,7 +42,7 @@ public class ApplockDao {
     //查询是否上锁
     public boolean findLock(String packageName) {
         SQLiteDatabase database = mHelper.getReadableDatabase();
-        String sql = "selcect count(1) from " + ApplockDB.Applock.TABLE_NAME + " where " + ApplockDB.Applock.COLUMN_PACKAGENAME + "=?";
+        String sql = "select count(1) from " + ApplockDB.Applock.TABLE_NAME + " where " + ApplockDB.Applock.COLUMN_PACKAGENAME + "=?";
         Cursor cursor = database.rawQuery(sql, new String[]{packageName});
         int count = 0;
         if (cursor != null) {

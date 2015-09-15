@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/item_virus_iv_icon"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:src="@mipmap/ic_launcher" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/item_virus_iv_icon"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/item_virus_tv_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="应用程序的包名" />
+
+        <TextView
+            android:id="@+id/item_virus_tv_safe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="安全状态" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/item_virus_iv_clean"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/item_virus_uninstall_secector"
+        android:src="@mipmap/list_button_uninstall_default" />
+
+
+</RelativeLayout>

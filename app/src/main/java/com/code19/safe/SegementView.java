@@ -16,8 +16,8 @@ public class SegementView extends LinearLayout implements View.OnClickListener {
     private static final String TAG = "SegementView";
     private TextView mTvLock;
     private TextView mTvUnlock;
-    private boolean isLocked;
     private OnSegementSelectedListener mListener;
+    private boolean isLocked;
 
     public SegementView(Context context) {
         super(context, null);
@@ -30,6 +30,7 @@ public class SegementView extends LinearLayout implements View.OnClickListener {
 
         mTvLock = (TextView) findViewById(R.id.segement_tv_lock);
         mTvUnlock = (TextView) findViewById(R.id.segement_tv_unlock);
+
         //只有一个可以被选中 selected
         mTvLock.setSelected(true);
         mTvUnlock.setSelected(false);
@@ -51,7 +52,7 @@ public class SegementView extends LinearLayout implements View.OnClickListener {
                 //点击上锁的
                 mTvLock.setSelected(true);
                 mTvUnlock.setSelected(false);
-                Log.i(TAG, "未上锁是否选中" + mTvLock.isSelected());
+                Log.i(TAG, "上锁-------------");
                 if (mListener != null) {
                     mListener.onSelected(true);
                 }
@@ -62,6 +63,7 @@ public class SegementView extends LinearLayout implements View.OnClickListener {
             if (isLocked) {
                 mTvLock.setSelected(false);
                 mTvUnlock.setSelected(true);
+            Log.i(TAG, "未上锁-------------");
                 if (mListener != null) {
                     mListener.onSelected(false);
                 }

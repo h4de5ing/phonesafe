@@ -1,10 +1,8 @@
 apply plugin: 'com.android.library'
-
 version = "1.2.0"
-
 android {
     compileSdkVersion 21
-    buildToolsVersion "21.1.2"
+    buildToolsVersion '19.1.0'
 
     defaultConfig {
         minSdkVersion 10
@@ -19,12 +17,9 @@ android {
         }
     }
 }
-
 def siteUrl = 'https://github.com/lzyzsd/CircleProgress'
 def gitUrl = 'https://github.com/lzyzsd/CircleProgress.git'
 group = "com.github.lzyzsd.circleprogress"
-
-
 task sourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
     classifier = 'sources'
@@ -43,3 +38,6 @@ artifacts {
 }
 Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+dependencies {
+}

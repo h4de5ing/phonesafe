@@ -9,6 +9,7 @@ import android.graphics.drawable.Drawable;
 public class AntiVirusBean {
     public Drawable icon;
     public String name;
-    public boolean virus;//是否是病毒
+    public boolean safe;//是否是病毒
     public String packageName;
+    public boolean Clean;//如果是病毒就需要清除操作
 }

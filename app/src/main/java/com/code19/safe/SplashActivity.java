@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.net.http.AndroidHttpClient;
 import android.os.Bundle;
 import android.os.Handler;
@@ -151,10 +152,12 @@ public class SplashActivity extends Activity {
         new Thread(new Runnable() {
             @Override
             public void run() {
+                Log.i(TAG, "子线程执行了没有 ");
                 FileOutputStream os = null;
                 InputStream is = null;
                 try {
-                    is = getResources().getAssets().open(ADDRESSDB);
+                    AssetManager am = getAssets();
+                    is = am.open(ANTIVIRUSDB);
                     os = new FileOutputStream(new File(getFilesDir(), ANTIVIRUSDB));
                     copyAssets2Files(is, os);
                     Log.i(TAG, "病毒特征库拷贝成功");
