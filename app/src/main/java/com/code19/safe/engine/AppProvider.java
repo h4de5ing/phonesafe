@@ -25,11 +25,11 @@ import java.util.List;
  */
 public class AppProvider {
     private static final String TAG = "app信息获取";
-    private Context mContext;
+    //private Context mContext;
     private static PackageManager sPackageManager;
 
     public AppProvider(Context context) {
-        mContext = context;
+        //mContext = context;
     }
 
     public static List<AppBean> getAllApps(Context context) {
