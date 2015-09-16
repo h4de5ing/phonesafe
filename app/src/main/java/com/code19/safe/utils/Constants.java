@@ -11,5 +11,6 @@ public class Constants {
     public static final java.lang.String AUTO_UPDATE = "auto_update";//自动更新
     public static final String NUMBER_ADDRESS_STYLE = "number_address_style"; //号码归属地样式
     public static String SJFD_PwD = "sjfd_pwd"; //手机防盗密码
+    public static String SHORTCUT = "shortcut"; //判断手机是否有桌面快捷方式
 
 }
