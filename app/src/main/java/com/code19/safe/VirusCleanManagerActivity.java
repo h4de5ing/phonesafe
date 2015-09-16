@@ -62,6 +62,7 @@ public class VirusCleanManagerActivity extends Activity {
     private ImageView mIvLeft;
     private ImageView mIvRight;
     private LinearLayout mLinearLayoutlAnimator;
+    private boolean isRunning;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
