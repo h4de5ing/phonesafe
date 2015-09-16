@@ -19,10 +19,10 @@ import com.code19.safe.utils.PreferenceUtils;
 public class SjfdActivity extends Activity {
 
     private static final String TAG = "SjfdActivity";
-    private TextView mTvSafeNumber;
+   // private TextView mTvSafeNumber;
     private RelativeLayout mRlProtecting;
     private ImageView mIvProtecting;
-    private boolean mProtecting;
+   // private boolean mProtecting;
     private RelativeLayout mResetup;
 
     @Override
@@ -35,7 +35,7 @@ public class SjfdActivity extends Activity {
 
     //初始化界面
     private void initView() {
-        mTvSafeNumber = (TextView) findViewById(R.id.sjfd_tv_safeNumber);//显示安全号码的控件
+        TextView mTvSafeNumber = (TextView) findViewById(R.id.sjfd_tv_safeNumber);//显示安全号码的控件
         mRlProtecting = (RelativeLayout) findViewById(R.id.sjfd_rl_protecting);//切换保护状态的控件
         mIvProtecting = (ImageView) findViewById(R.id.sjfd_iv_protecting);//显示保护状态的图片
         mResetup = (RelativeLayout) findViewById(R.id.sjfd_rl_resetup);
@@ -44,7 +44,7 @@ public class SjfdActivity extends Activity {
         //显示安全号码
         mTvSafeNumber.setText(safeNumber);
         //拿到开启保护的状态
-        mProtecting = PreferenceUtils.getBoolean(SjfdActivity.this, Constants.PROTECTING);
+        boolean mProtecting = PreferenceUtils.getBoolean(SjfdActivity.this, Constants.PROTECTING);
         //根据保护状态设置显示图像
         mIvProtecting.setImageResource(mProtecting ? R.mipmap.lock : R.mipmap.unlock);
     }
