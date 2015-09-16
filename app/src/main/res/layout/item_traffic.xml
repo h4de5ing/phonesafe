@@ -2,45 +2,45 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="center_vertical"
-    android:orientation="horizontal">
+    android:padding="4dp">
 
     <ImageView
         android:id="@+id/item_traffic_icon"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_centerVertical="true"
-        android:src="@mipmap/ic_launcher" />
+        android:layout_centerVertical="true" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
+        android:layout_marginLeft="4dp"
         android:layout_toRightOf="@id/item_traffic_icon"
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/item_traffic_title"
+            android:id="@+id/item_traffic_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="包名" />
+            android:textColor="@android:color/black" />
 
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/item_app_desc"
-                android:layout_width="match_parent"
+                android:id="@+id/item_traffic_receive"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="手机内存"/>
+                android:textColor="@android:color/black" />
 
             <TextView
-                android:id="@+id/item_app_size"
+                android:id="@+id/item_traffic_send"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:text="10KB"/>
+                android:layout_marginRight="20dp"
+                android:textColor="@android:color/black" />
         </RelativeLayout>
     </LinearLayout>
 </RelativeLayout>

@@ -1,8 +1,10 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <TextView
+        android:id="@+id/traffic_title"
         style="@style/titlebarStyle"
         android:text="流量统计" />
 
@@ -10,13 +12,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <include layout="@layout/progress_loading" />
+        <ProgressBar
+            android:id="@+id/traffic_pb"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:indeterminateDrawable="@drawable/progress_loading" />
 
         <ListView
             android:id="@+id/traffic_lv_app"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent" />
 
-        </ListView>
     </FrameLayout>
-</RelativeLayout>
+</LinearLayout>

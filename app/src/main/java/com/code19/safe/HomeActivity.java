@@ -229,6 +229,8 @@ public class HomeActivity extends Activity {
     //Item 5 流量统计
     private void PreformLltj() {
 
+        Intent intent = new Intent(HomeActivity.this, TrafficActivity.class);
+        startActivity(intent);
 
     }
 

@@ -17,7 +17,6 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -164,7 +163,7 @@ public class VirusCleanManagerActivity extends Activity {
                     bean.safe = safe;
                     bean.name = name;
                     bean.packageName = pkg.packageName;
-                    SystemClock.sleep(100);//线程小睡一会
+                    //SystemClock.sleep(100);//线程小睡一会
                     //push出去的是bean数据，那么onProgressUpdate的参数类型就必须是bean类型的
                     //异步任务的Progress参数也必须是bean类型的
                     publishProgress(bean); //通知文本改变

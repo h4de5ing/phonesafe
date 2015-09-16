@@ -19,7 +19,7 @@ public class SettingItemView extends RelativeLayout {
     private static final int BACKGROUDN_FIRST = 0;
     private static final int BACKGROUDN_MIDDLE = 1;
     private static final int BACKGROUDN_LAST = 2;
-    private TextView mTvTitle;
+    //private TextView mTvTitle;
     private ImageView mTvIcon;
     private boolean isOpen = true;//默认关闭
 
@@ -32,7 +32,7 @@ public class SettingItemView extends RelativeLayout {
     public SettingItemView(Context context, AttributeSet set) {
         super(context, set);
         View.inflate(context, R.layout.view_setting_item, this);//加载xml布局，xml和当前类绑定
-        mTvTitle = (TextView) findViewById(R.id.view_tv_title);  //布局选项中标题
+        TextView mTvTitle = (TextView) findViewById(R.id.view_tv_title);  //布局选项中标题
         mTvIcon = (ImageView) findViewById(R.id.view_tv_icon);   //布局选项中的图标
 
         //读取自定义属性

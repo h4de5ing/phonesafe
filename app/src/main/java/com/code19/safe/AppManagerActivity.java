@@ -170,13 +170,7 @@ public class AppManagerActivity extends Activity {
             @Override
             public void onClick(View v) {
                 /***
-                 * 来自系统源码 PackageInstaller中的清单文件
-                 *<intent-filter>
-                 <action android:name="android.intent.action.VIEW" />
-                 <action android:name="android.intent.action.DELETE" />
-                 <category android:name="android.intent.category.DEFAULT" />
-                 <data android:scheme="package" />
-                 </intent-filter>
+                 * 参考自系统源码 PackageInstaller中的清单文件
                  */
                 Log.i(TAG, "点击了卸载");
                 if (bean.isSystem) {
@@ -212,17 +206,7 @@ public class AppManagerActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Log.i(TAG, "点击了信息");
-                /** 来自系统源码settings中的清单文件
-                 *<activity android:name=".applications.InstalledAppDetails"
-                 android:theme="@android:style/Theme.NoTitleBar"
-                 android:label="@string/application_info_label">
-                 <intent-filter>
-                 <action android:name="android.settings.APPLICATION_DETAILS_SETTINGS" />
-                 <category android:name="android.intent.category.DEFAULT" />
-                 <data android:scheme="package" />
-                 </intent-filter>
-                 </activity>
-                 */
+                //来自系统源码settings中的清单文件
                 Intent intent = new Intent();
                 intent.setAction("android.settings.APPLICATION_DETAILS_SETTINGS");
                 intent.addCategory("android.intent.category.DEFAULT");

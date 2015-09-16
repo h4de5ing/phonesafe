@@ -204,14 +204,16 @@ public class CleanCacheActivity extends Activity {
             //设置进度条的最大值
             max = packages.size();
             for (PackageInfo pkg : packages) {
-                Log.i(TAG, "doInBackground "+pkg.packageName);
+                Log.i(TAG, "doInBackground " + pkg.packageName);
 //                if (!isRunning) {
 //                    break;
 //                }
                 //progress++;
 
                 try {
-                    Method method = mPm.getClass().getDeclaredMethod("getPackageSizeInfo", String.class, IPackageStatsObserver.class);
+                    //通过反射拿到hide方法
+                    Method method = mPm.getClass().getMethod("getPackageSizeInfo", String.class, IPackageStatsObserver.class);
+                    method.setAccessible(true);
                     method.invoke(mPm, pkg.packageName, mStatsObserver);
                 } catch (NoSuchMethodException e) {
                     e.printStackTrace();
@@ -220,9 +222,7 @@ public class CleanCacheActivity extends Activity {
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
                 }
-
             }
-
             return null;
         }
 
