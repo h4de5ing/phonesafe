@@ -12,7 +12,9 @@ import android.os.Message;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.code19.safe.utils.Constants;
 import com.code19.safe.utils.PackageInfoUtils;
+import com.code19.safe.utils.PreferenceUtils;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -69,6 +71,12 @@ public class SplashActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        //生成一个快捷图标
+        boolean shortcut = PreferenceUtils.getBoolean(this, Constants.SHORTCUT, false);
+//        if (没有生成)
+        Intent intent = new Intent();
+
+        sendBroadcast(intent);
 
         //初始化View，显示版本号
         tv_version = (TextView) findViewById(R.id.splash_tv_version);
