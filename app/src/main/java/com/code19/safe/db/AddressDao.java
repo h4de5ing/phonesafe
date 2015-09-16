@@ -16,7 +16,6 @@ import java.io.File;
 public class AddressDao {
 
     private static final String TAG = "AddressDao";
-    private static String tmpNumber;
 
     public static String findAddress(Context context, String number) {
         String mAddress = "未知号码";
@@ -26,9 +25,8 @@ public class AddressDao {
         boolean isPhoneNumber = number.matches("^1[34578]\\d{9}$");
         Log.i(TAG, "是否是电话号码：" + isPhoneNumber);
         if (isPhoneNumber) {//如果是手机号码就截取前7位进行判断进行查询
-            tmpNumber = number.substring(0, 7);
             String sql = "select cardtype from info where mobileprefix=?";
-            Cursor cursor = database.rawQuery(sql, new String[]{tmpNumber});
+            Cursor cursor = database.rawQuery(sql, new String[]{number.substring(0, 7)});
             if (cursor != null) {
                 if (cursor.moveToNext()) {
                     mAddress = cursor.getString(0);
@@ -54,9 +52,8 @@ public class AddressDao {
                 case 10:
                 case 11:
                 case 12:  //取前3或4位，根据区号判断
-                    tmpNumber = number.substring(0, 3);
                     String sql = "select cardtype from info where area=?";
-                    Cursor cursor = database.rawQuery(sql, new String[]{tmpNumber});
+                    Cursor cursor = database.rawQuery(sql, new String[]{number.substring(0, 3)});
                     if (cursor != null) {
                         if (cursor.moveToNext()) {
                             mAddress = cursor.getString(0);
@@ -64,9 +61,8 @@ public class AddressDao {
                         cursor.close();
                     }
                     if (TextUtils.isEmpty(mAddress)) {
-                        tmpNumber = number.substring(0, 4);
                         sql = "select cardtype from info where area=?";
-                        cursor = database.rawQuery(sql, new String[]{tmpNumber});
+                        cursor = database.rawQuery(sql, new String[]{number.substring(0, 4)});
                         if (cursor != null) {
                             if (cursor.moveToNext()) {
                                 mAddress = cursor.getString(0);

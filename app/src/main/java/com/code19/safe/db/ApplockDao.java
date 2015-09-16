@@ -13,11 +13,11 @@ import java.util.List;
  * 23:59
  */
 public class ApplockDao {
-    private Context mContext;
+    //private Context mContext;
     private final AppLockDBHelper mHelper;
 
     public ApplockDao(Context context) {
-        this.mContext = context;
+        //this.mContext = context;
         mHelper = new AppLockDBHelper(context);
     }
 
@@ -58,7 +58,7 @@ public class ApplockDao {
     //查询所有上锁的包名
     public List<String> findAll() {
         SQLiteDatabase database = mHelper.getReadableDatabase();
-        String sql = "selcect " + ApplockDB.Applock.COLUMN_PACKAGENAME + " from " + ApplockDB.Applock.TABLE_NAME;
+        String sql = "select " + ApplockDB.Applock.COLUMN_PACKAGENAME + " from " + ApplockDB.Applock.TABLE_NAME;
         Cursor cursor = database.rawQuery(sql, null);
         List<String> list = new ArrayList<>();
         if (cursor != null) {
