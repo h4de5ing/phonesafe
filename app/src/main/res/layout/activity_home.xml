@@ -53,11 +53,6 @@
             android:onClick="clickSetting"
             android:src="@mipmap/setting"/>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="clearn"
-            android:text="调试模式"/>
     </RelativeLayout>
 
     <!--主页的下部分-->
