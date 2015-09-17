@@ -199,10 +199,8 @@ public class HomeActivity extends Activity {
         String pwd = PreferenceUtils.getString(this, Constants.SJFD_PwD);
         if (TextUtils.isEmpty(pwd)) {
             //如果为空，弹出对话框，设置密码
-            Log.i(TAG, "提示设置密码");
             showInitPwdDialog();
         } else {
-            Log.i(TAG, "提示输入密码");
             showEnterPwdDialog();
         }
     }
@@ -299,7 +297,6 @@ public class HomeActivity extends Activity {
                 dialog.dismiss();
                 Intent intent = new Intent(HomeActivity.this, SjfdSetup1Activity.class);
                 startActivity(intent);
-                Log.i(TAG, "启动设置向导界面");
                 Log.i(TAG, "initPwd:" + initPwd.getText() + ",confirmPwd:" + confirmPwd.getText());
             }
         });
@@ -341,16 +338,13 @@ public class HomeActivity extends Activity {
                 }
                 if (!pass.equals(enterPass)) {
                     //密码错误
-                    Log.i(TAG, "密码错误");
                     Toast.makeText(HomeActivity.this, "您输入的密码错误", Toast.LENGTH_SHORT).show();
                 } else {
                     //密码正确 关闭密码输入对话框并跳转到手机防盗页面
                     dialog.dismiss();
-                    Log.i(TAG, "密码正确" + enterPass);
                     Intent intent = new Intent(HomeActivity.this, SjfdActivity.class);
                     startActivity(intent);
                 }
-                Log.i(TAG, "你输入的密码：" + enterPwd.getText());
             }
         });
         //输入密码对话框，取消按钮，直接取消对话框，返回主页
@@ -361,12 +355,5 @@ public class HomeActivity extends Activity {
             }
         });
 
-    }
-
-    //清除手机防盗的设置，方便调试.TODO
-    public void clearn(View v) {
-        PreferenceUtils.putString(this, Constants.SJFD_PwD, "");
-        Log.i(TAG, "手机防盗设置清除成功，可以重新设置了");
-        Toast.makeText(this, "调试功能:清除手机防盗密码", Toast.LENGTH_SHORT).show();
     }
 }
