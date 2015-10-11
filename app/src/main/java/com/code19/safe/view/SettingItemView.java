@@ -13,7 +13,6 @@ import com.code19.safe.R;
 /**
  * Created by Gh0st on 2015/8/29.
  * 19:40
- * 通过inflate得到设置的条目项，绑定view_setting_item.xml
  */
 public class SettingItemView extends RelativeLayout {
     private static final int BACKGROUDN_FIRST = 0;

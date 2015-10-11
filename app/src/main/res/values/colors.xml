@@ -8,4 +8,13 @@
     <color name="floating_action_button_disabled">#ff0b2535</color>
     <color name="ghost">#247ab0</color>
     <color name="item_selected">#88459FD7</color>
+
+    <color name="bbutton_default">#ffffffff</color>
+    <color name="bbutton_default_edge">#ffcccccc</color>
+    <color name="bbutton_default_pressed">#ffebebeb</color>
+    <color name="bbutton_default_pressed_edge">#ffadadad</color>
+    <color name="bbutton_default_disabled">#a5ffffff</color>
+    <color name="bbutton_default_disabled_edge">#a5cccccc</color>
+
+    <color name="setting_item_bg" >#33ffffff</color>
 </resources>

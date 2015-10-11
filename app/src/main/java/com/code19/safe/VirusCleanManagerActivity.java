@@ -152,7 +152,7 @@ public class VirusCleanManagerActivity extends Activity {
                 try {
                     in = new FileInputStream(new File(sourceDir));
                     String md5 = Md5Utils.encode(in);
-                    Log.i(TAG, "包名：" + pkg.packageName + ",Md5:" + md5);
+                    //Log.i(TAG, "包名：" + pkg.packageName + ",Md5:" + md5);
                     //查询数据对比是否病毒
                     boolean safe = AntiVirusDao.isVirus(getApplicationContext(), md5);
                     ApplicationInfo applicationInfo = mPm.getApplicationInfo(pkg.packageName, 0);
@@ -211,7 +211,7 @@ public class VirusCleanManagerActivity extends Activity {
             mLvListview.smoothScrollToPosition(0);
             //显示结果部分
             mLinearLayoutlAnimator.setVerticalGravity(View.VISIBLE);
-            mRlResultContainer.setVisibility(View.VISIBLE);
+            //mRlResultContainer.setVisibility(View.VISIBLE);
             mRlScanContainer.setVisibility(View.GONE);
 
             //扫描结束开始显示动画,扫描结果做动画
@@ -273,8 +273,10 @@ public class VirusCleanManagerActivity extends Activity {
         AnimatorSet set = new AnimatorSet();
         mIvLeft.measure(0, 0);
         int leftWidth = mIvLeft.getMeasuredWidth();
+        Log.i("左边宽度", leftWidth + "");
         mIvRight.measure(0, 0);
         int rightWidth = mIvRight.getMeasuredWidth();
+        Log.i("右边宽度", rightWidth + "");
         set.playTogether(
                 ObjectAnimator.ofFloat(mIvLeft, "translationX", 0, -leftWidth),
                 ObjectAnimator.ofFloat(mIvLeft, "alpha", 1f, 0f),
@@ -285,14 +287,15 @@ public class VirusCleanManagerActivity extends Activity {
         set.addListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {
-                Log.i(TAG, "开始动画了...l");
+               // Log.i(TAG, "start animation--------------");
                 mBtnRescan.setEnabled(false);
             }
 
             @Override
             public void onAnimationEnd(Animator animation) {
-                Log.i(TAG, "动画结束了。。。。");
+               // Log.i(TAG, "stop animation------------------");
                 mBtnRescan.setEnabled(true);
+
             }
 
             @Override

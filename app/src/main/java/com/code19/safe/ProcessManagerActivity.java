@@ -103,7 +103,6 @@ public class ProcessManagerActivity extends Activity {
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.i(TAG, "点击了条目" + position);
                 ProcessBean bean= (ProcessBean) mProcessListViewAdapter.getItem(position);
                 if(bean.name.equals(getPackageName())){
                     return ;

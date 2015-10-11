@@ -1,10 +1,19 @@
 <resources>
     <string name="app_name">Safe</string>
+    <!--版本检测的服务器地址-->
+    <string name="version_check">http://10.0.2.2:8080</string>
+    <!--版本号-->
+    <string name="version_name">版本号：</string>
+    <!--报警短信内容-->
     <string name="safeSms">you cellphone maybe was lost</string>
     <string name="action_settings">Settings</string>
+    <!--首页的描述信息-->
     <string name="home_title">程序员手机安全卫士</string>
     <string name="home_title_description">手机安全卫士，您的手机保镖，19code.com</string>
+    <!--设备管理员的名称和描述-->
     <string name="device_admin">手机安全卫士</string>
     <string name="device_admin_description">你的安全由我来掌控</string>
+    <!--桌面快捷图标的名称-->
+    <string name="shortcut">安卓手机卫士</string>
 
 </resources>

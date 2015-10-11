@@ -40,16 +40,12 @@ public class ContactsActivity2 extends Activity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contacts);
-
         //初始化界面
         initView();
-
         //初始化事件
         initEvent();
-
         //初始化数据
         initData();
-
     }
 
     private void initView() {

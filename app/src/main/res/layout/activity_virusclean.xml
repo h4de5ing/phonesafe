@@ -26,16 +26,16 @@
             <ImageView
                 android:id="@+id/aa_animatator_iv_left"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                />
+                android:src="@mipmap/ic_launcher" />
 
             <ImageView
                 android:id="@+id/aa_animatator_iv_right"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                />
+                android:src="@mipmap/ic_launcher" />
         </LinearLayout>
         <!--病毒扫描进度部分-->
         <RelativeLayout
@@ -50,7 +50,6 @@
                 android:layout_height="100dp"
                 android:layout_centerInParent="true"
                 code19:arc_bottom_text="扫描中..."
-                code19:arc_progress="55"
                 code19:arc_suffix_text_padding="10dp"
                 code19:arc_text_color="#ffffff" />
 

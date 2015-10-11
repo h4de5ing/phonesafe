@@ -54,7 +54,6 @@ public class ToolsActivity extends Activity {
         mNormalnumber.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i(TAG, "点击了常用号码查询");
                 //new LinearLayout(),将某个控件移到最前面
                 // removeView 方法 移除后
                 // addView 方法 添加到0位置
@@ -67,7 +66,6 @@ public class ToolsActivity extends Activity {
         mBakupsms.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i(TAG, "备份短信吧");
                 final ProgressDialog dialog = new ProgressDialog(ToolsActivity.this);
                 dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
                 dialog.setCanceledOnTouchOutside(false);//点击外侧取消dialog

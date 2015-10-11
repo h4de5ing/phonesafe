@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 22
-    buildToolsVersion '19.1.0'
+    buildToolsVersion '22.0.1'
 
     defaultConfig {
         applicationId "com.code19.safe"
@@ -22,5 +22,6 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:22.1.1'
-    compile project(':library')
+    compile project(':CircleProgress')
+    compile 'com.squareup.okhttp:okhttp:2.0.0'
 }
