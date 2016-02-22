@@ -2,9 +2,8 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@mipmap/splash"
-                tools:context=".MainActivity">
-    <!--splash启动页面的布局-->
+                android:background="@android:color/black"
+                tools:context=".SplashActivity">
 
     <TextView
         android:id="@+id/splash_tv_version"
@@ -13,7 +12,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="10dp"
-        android:textSize="10dp"
-        />
+        android:textColor="@android:color/white"
+        android:textSize="12sp"/>
 
 </RelativeLayout>

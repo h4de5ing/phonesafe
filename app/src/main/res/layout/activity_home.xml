@@ -3,7 +3,6 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical">
-    <!--Home的布局-->
 
     <!--主页面上半部分，图标，标题-->
     <RelativeLayout
@@ -64,5 +63,5 @@
         android:layout_height="match_parent"
         android:horizontalSpacing="2dp"
         android:numColumns="2"
-        android:verticalSpacing="2dp"></GridView>
+        android:verticalSpacing="2dp"/>
 </LinearLayout>
