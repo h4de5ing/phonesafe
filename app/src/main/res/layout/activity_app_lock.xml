@@ -9,7 +9,7 @@
         android:layout_height="48dp"
         android:background="#399AD6">
 
-        <com.code19.safe.SegementView
+        <com.code19.safe.activity.SegementView
             android:id="@+id/app_lock_toggle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

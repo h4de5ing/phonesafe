@@ -27,7 +27,6 @@ public class PrograssInfoView extends LinearLayout {
 
     public PrograssInfoView(Context context, AttributeSet att) {
         super(context, att);
-        //加载xml挂载到类上
         View.inflate(context, R.layout.view_progress_info,this);
         mProgressBar = (ProgressBar) findViewById(R.id.view_pi_pb_progress);
         mTvTitle = (TextView) findViewById(R.id.view_pi_tv_title);

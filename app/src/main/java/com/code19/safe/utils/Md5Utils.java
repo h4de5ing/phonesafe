@@ -53,9 +53,9 @@ public class Md5Utils {
                 sb.append(hex);
             }
             return sb.toString();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
         return null;

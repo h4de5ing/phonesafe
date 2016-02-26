@@ -31,7 +31,6 @@ public class AddressNumberStyleDialog extends Dialog {
         //去掉dialog的title，一定要在界面限制之前
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
-        //获得window的layoutparam
         Window window = getWindow();
         WindowManager.LayoutParams params = window.getAttributes();
         params.gravity = Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL;

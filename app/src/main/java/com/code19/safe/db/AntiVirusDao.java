@@ -44,7 +44,6 @@ public class AntiVirusDao {
         values.put("name", name);
         values.put("desc", "让用户无法删除的程序");
         long insert = db.insert("datable", null, values);
-// update
         db.close();
         return insert != -1;
     }

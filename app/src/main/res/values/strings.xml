@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">Safe</string>
-    <!--版本检测的服务器地址-->
-    <string name="version_check">http://www.19code.com</string>
     <!--版本号-->
     <string name="version_name">版本号:%1$d</string>
     <!--报警短信内容-->

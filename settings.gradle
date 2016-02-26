@@ -1,1 +1,1 @@
-include ':app', ':CircleProgress', ':test'
+include ':app'

@@ -10,7 +10,6 @@ import android.content.pm.PackageManager;
  * 用于获取到版本信息
  */
 public class PackageInfoUtils {
-    // 获取当前包版本名称
     public static String getVersionName(Context context) {
         PackageManager packageManager = context.getPackageManager();
         try {
@@ -22,7 +21,6 @@ public class PackageInfoUtils {
         }
     }
 
-    //获取当前包版本号
     public static int getVersionCode(Context context) {
         PackageManager packageManager = context.getPackageManager();
         try {

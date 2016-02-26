@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.util.Log;
 
 /**
- * TODO
  * android 4.4以后就收不到短信了。。需要设置成为默认短信应用程序，但是也是可以读取短信的。
  */
 

@@ -17,7 +17,6 @@ public class BaseApplication extends Application {
         Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
             @Override
             public void uncaughtException(Thread thread, Throwable ex) {
-                //处理异常
                 Log.i(TAG, "有没有捕获的异常");
                 ex.printStackTrace();
             }

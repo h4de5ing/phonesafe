@@ -60,7 +60,6 @@ public class ProcessProvider {
 
         for (PackageInfo pkg : packages) {
 
-            //1.获得pkg包中所有Activity进程名字，并添加到set中去
             ActivityInfo[] activities = pkg.activities;
             if (activities != null) {
                 for (ActivityInfo activityInfo : activities) {
@@ -68,7 +67,6 @@ public class ProcessProvider {
                 }
             }
 
-            //2.获取pkg包中所有services的进程名，并添加到set中去
             ServiceInfo[] services = pkg.services;
             if (services != null) {
                 for (ServiceInfo serviceInfo : services) {
@@ -76,7 +74,6 @@ public class ProcessProvider {
                 }
             }
 
-            //3.获得pkg包中所有providers进程名，并添加到set中去
             ProviderInfo[] providers = pkg.providers;
             if (providers != null) {
                 for (ProviderInfo providerInfo : providers) {
@@ -84,7 +81,6 @@ public class ProcessProvider {
                 }
             }
 
-            //4.获得pkg包中所有receivers进程名，并添加到set中去
             ActivityInfo[] receivers = pkg.receivers;
             if (receivers != null) {
                 for (ActivityInfo receiver : receivers) {
@@ -102,24 +98,23 @@ public class ProcessProvider {
      * @param context 上下文
      */
     public static List<ProcessBean> getRunningProcess(Context context) {
-        PackageManager pm = context.getPackageManager();//包管理器，用于获取应用信息
+        PackageManager pm = context.getPackageManager();
 
         ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
-        List<ProcessBean> list = new ArrayList<ProcessBean>(); //用于存储获取到信息
+        List<ProcessBean> list = new ArrayList<ProcessBean>();
         List<ActivityManager.RunningAppProcessInfo> runningAppProcesses = am.getRunningAppProcesses();
         ApplicationInfo applicationInfo = null;
         for (ActivityManager.RunningAppProcessInfo runapp : runningAppProcesses) {
             ProcessBean bean = new ProcessBean();
             try {
                 applicationInfo = pm.getApplicationInfo(runapp.processName, 0);
-                bean.name = applicationInfo.loadLabel(pm).toString();  //得到进程的应用名称
+                bean.name = applicationInfo.loadLabel(pm).toString();
                 if (applicationInfo.loadIcon(pm) != null) {
                     bean.icon = applicationInfo.loadIcon(pm);
                 } else {
                     Log.i(TAG, "系统的进程没有图标");
                 }
-                //bean.icon = applicationInfo.loadIcon(pm); //得到进程的图标
-                bean.processName = runapp.processName; //得到进程名称
+                bean.processName = runapp.processName;
 
                 //判断是否是系统进程
                 int flags = applicationInfo.flags;
@@ -130,10 +125,8 @@ public class ProcessProvider {
                 }
             } catch (PackageManager.NameNotFoundException e) {
                 Log.i(TAG, runapp.processName + "应用名找不到");
-                //bean.name = applicationInfo.packageName;
                 bean.name = runapp.processName;
                 bean.isSystem = true;
-                //e.printStackTrace();
             }
             Debug.MemoryInfo memory = am.getProcessMemoryInfo(new int[]{runapp.pid})[0];
             bean.memory = memory.getTotalPss() * 1024;
@@ -152,7 +145,7 @@ public class ProcessProvider {
         ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
         ActivityManager.MemoryInfo outInfo = new ActivityManager.MemoryInfo();
         am.getMemoryInfo(outInfo);
-        return outInfo.availMem; //获得剩余空间
+        return outInfo.availMem;
     }
 
     /**
@@ -164,8 +157,6 @@ public class ProcessProvider {
         ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
         ActivityManager.MemoryInfo outInfo = new ActivityManager.MemoryInfo();
         am.getMemoryInfo(outInfo);
-        //outInfo.avaiMem 是api 16支持的，低版本没法获取到
-        // 所以低版本采用读取/proc/meminfo 文件总的内容
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             return outInfo.totalMem;
         } else {
@@ -189,7 +180,6 @@ public class ProcessProvider {
 
     //获取低版本系统的内存信息
     public static long loadLowVersionTotalMemory() {
-        //String line = "0KB";
         String s = null;
         File file = new File("/proc/meminfo");
         BufferedReader reader = null;

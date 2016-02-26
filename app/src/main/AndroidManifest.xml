@@ -24,35 +24,35 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".SplashActivity"
+            android:name=".activity.SplashActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".HomeActivity" />
-        <activity android:name=".SettingActivity" />
-        <activity android:name=".SjfdActivity" />
-        <activity android:name=".SjfdSetup1Activity" />
-        <activity android:name=".SjfdSetup2Activity" />
-        <activity android:name=".SjfdSetup3Activity" />
-        <activity android:name=".SjfdSetup4Activity" />
-        <activity android:name=".SjfdSetup5Activity" />
-        <activity android:name=".ContactsActivity" />
+        <activity android:name=".activity.HomeActivity" />
+        <activity android:name=".activity.SettingActivity" />
+        <activity android:name=".activity.SjfdActivity" />
+        <activity android:name=".activity.SjfdSetup1Activity" />
+        <activity android:name=".activity.SjfdSetup2Activity" />
+        <activity android:name=".activity.SjfdSetup3Activity" />
+        <activity android:name=".activity.SjfdSetup4Activity" />
+        <activity android:name=".activity.SjfdSetup5Activity" />
+        <activity android:name=".activity.ContactsActivity" />
         <!-- 如下是优化项，优化完要删除 TODO -->
-        <activity android:name=".ContactsActivity2" />
-        <activity android:name=".CallSmsSafeActivity" />
-        <activity android:name=".BlackListEditActivity" />
-        <activity android:name=".ToolsActivity" />
-        <activity android:name=".NumberAddressActivity" />
-        <activity android:name=".NormalNumberActivity" />
-        <activity android:name=".AppManagerActivity" />
-        <activity android:name=".ProcessManagerActivity" />
-        <activity android:name=".VirusCleanManagerActivity" />
-        <activity android:name=".AppLockActivity" />
-        <activity android:name=".CleanCacheActivity" />
-        <activity android:name=".TrafficActivity" />
+        <activity android:name=".activity.ContactsActivity2" />
+        <activity android:name=".activity.CallSmsSafeActivity" />
+        <activity android:name=".activity.BlackListEditActivity" />
+        <activity android:name=".activity.ToolsActivity" />
+        <activity android:name=".activity.NumberAddressActivity" />
+        <activity android:name=".activity.NormalNumberActivity" />
+        <activity android:name=".activity.AppManagerActivity" />
+        <activity android:name=".activity.ProcessManagerActivity" />
+        <activity android:name=".activity.VirusCleanManagerActivity" />
+        <activity android:name=".activity.AppLockActivity" />
+        <activity android:name=".activity.CleanCacheActivity" />
+        <activity android:name=".activity.TrafficActivity" />
 
         <!-- 激活管理员receiver -->
         <receiver
@@ -91,12 +91,10 @@
                 android:resource="@xml/safe_appwidget_info" />
         </receiver>
         <!-- 短信监听通过服务来做 -->
-
-
         <!-- 黑名单，监听短信， -->
         <service android:name=".service.CallSmsSafeService" />
         <!-- 归属地查询，监听来电 -->
-        <service android:name=".service.NumberAddressService" />
+        <service android:name=".service.NumBerAddressService" />
         <!-- 定位服务 -->
         <service android:name=".service.GPSService" />
         <!-- 保护服务 -->

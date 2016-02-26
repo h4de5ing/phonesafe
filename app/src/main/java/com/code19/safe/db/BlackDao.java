@@ -24,7 +24,6 @@ public class BlackDao {
         mHelper = new BlackDBHelper(context);
     }
 
-    //插入数据
     public boolean insert(String number, int type) {
         SQLiteDatabase database = mHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -36,7 +35,6 @@ public class BlackDao {
         return insert != -1;
     }
 
-    //更新数据
     public boolean update(String number, int type) {
         SQLiteDatabase database = mHelper.getWritableDatabase();
         //public int update (String table, ContentValues values, String whereClause, String[] whereArgs)
@@ -52,7 +50,6 @@ public class BlackDao {
         return update > 0;
     }
 
-    //删除数据
     public boolean delete(String number) {
         SQLiteDatabase database = mHelper.getWritableDatabase();
         int delete = database.delete(BackListDB.BLACKTABLE.TABLE_NAME, BackListDB.BLACKTABLE.COLUMN_NUMBER + "=?", new String[]{number});
@@ -61,19 +58,17 @@ public class BlackDao {
         return delete > 0;
     }
 
-    //查找全部数据
     public List<BlackBean> queryAll() {
         List<BlackBean> list = new ArrayList<BlackBean>();
         SQLiteDatabase database = mHelper.getReadableDatabase();
         String table = BackListDB.BLACKTABLE.TABLE_NAME;
         String sql = "select " + BackListDB.BLACKTABLE.COLUMN_NUMBER + "," + BackListDB.BLACKTABLE.COLUMN_TYPE + " from " + table;
         Log.i(TAG, "查询语句" + sql);
-        Cursor cursor = database.rawQuery(sql, null);//无条件查询所有数据
-        //database.query()
+        Cursor cursor = database.rawQuery(sql, null);
         if (cursor != null) {
             while (cursor.moveToNext()) {
-                String number = cursor.getString(0);//拿到number
-                int type = cursor.getInt(1);//拿到type
+                String number = cursor.getString(0);
+                int type = cursor.getInt(1);
                 Log.i(TAG, "number:" + number + ",type:" + type);
                 BlackBean bean = new BlackBean();
                 bean.number = number;
@@ -84,14 +79,6 @@ public class BlackDao {
         }
         database.close();
         return list;
-    }
-
-    //查找部分数据，实现分页查找，TODO
-    // 如果是网络数据这样操作，采用分页查找
-    // 如果是本地数据库，返回cursor数据即可
-    public void findPart() {
-
-
     }
 
 }

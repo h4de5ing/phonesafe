@@ -28,6 +28,6 @@ public class AddressToast extends Dialog {
         WindowManager.LayoutParams params = window.getAttributes();
         params.gravity = Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL;
         window.setAttributes(params);
-        setContentView(R.layout.dialog_number_address_style);  //TODO style没有做效果
+        setContentView(R.layout.dialog_number_address_style);
     }
 }

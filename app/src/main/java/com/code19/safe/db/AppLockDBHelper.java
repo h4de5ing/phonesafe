@@ -11,7 +11,6 @@ import android.util.Log;
  */
 public class AppLockDBHelper extends SQLiteOpenHelper {
 
-    private static final String TAG = "AppLockDBHelper";
 
     public AppLockDBHelper(Context context) {
         super(context,ApplockDB.DB_NAME, null, ApplockDB.VERSION);
@@ -19,9 +18,6 @@ public class AppLockDBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        //建表
-        //create table applock()
-        Log.i(TAG, "建表语句" + ApplockDB.Applock.CREATE_TABLE_SQL);
         db.execSQL(ApplockDB.Applock.CREATE_TABLE_SQL);
     }
 

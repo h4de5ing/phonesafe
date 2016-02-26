@@ -18,35 +18,24 @@ public class SettingItemView extends RelativeLayout {
     private static final int BACKGROUDN_FIRST = 0;
     private static final int BACKGROUDN_MIDDLE = 1;
     private static final int BACKGROUDN_LAST = 2;
-    //private TextView mTvTitle;
     private ImageView mTvIcon;
     private boolean isOpen = true;//默认关闭
 
-    //new 建对象时用，建对象时就将所有的控件带过去了
     public SettingItemView(Context context) {
-        this(context, null);//创建对象时返回三个参数的构造方法
+        this(context, null);
     }
 
-    //xml布局使用   //三个参数的构造方法绑定xml
     public SettingItemView(Context context, AttributeSet set) {
         super(context, set);
-        View.inflate(context, R.layout.view_setting_item, this);//加载xml布局，xml和当前类绑定
-        TextView mTvTitle = (TextView) findViewById(R.id.view_tv_title);  //布局选项中标题
-        mTvIcon = (ImageView) findViewById(R.id.view_tv_icon);   //布局选项中的图标
-
-        //读取自定义属性
+        View.inflate(context, R.layout.view_setting_item, this);
+        TextView mTvTitle = (TextView) findViewById(R.id.view_tv_title);
+        mTvIcon = (ImageView) findViewById(R.id.view_tv_icon);
         TypedArray ta = context.obtainStyledAttributes(set, R.styleable.SettingItemView);
-
         String title = ta.getString(R.styleable.SettingItemView_sivTitle);
         int background = ta.getInt(R.styleable.SettingItemView_sivBackground, BACKGROUDN_FIRST);
         boolean toggle = ta.getBoolean(R.styleable.SettingItemView_sivToggle, true);
-
-        ta.recycle();//循环利用
-
-        //设置textView的值
-        mTvTitle.setText(title);//找到的标题控件
-
-        //选择背景
+        ta.recycle();
+        mTvTitle.setText(title);
         switch (background) {
             case BACKGROUDN_FIRST:
                 findViewById(R.id.setting_item_root).setBackgroundResource(R.drawable.setting_item_first_selector);
@@ -66,8 +55,8 @@ public class SettingItemView extends RelativeLayout {
      * 开关的方法，开的时候就关，关的时候就开
      */
     public void toggle() {
-        mTvIcon.setImageResource(isOpen ? R.mipmap.off : R.mipmap.on); //设置图标
-        isOpen = !isOpen; //重置状态
+        mTvIcon.setImageResource(isOpen ? R.mipmap.off : R.mipmap.on);
+        isOpen = !isOpen;
     }
 
     /**

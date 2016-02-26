@@ -2,7 +2,7 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!--按下的状态-->
-    <item android:drawable="@drawable/abc_btn_radio_to_on_mtrl_000" android:state_pressed="true" />
+    <item android:drawable="@drawable/abc_btn_borderless_material" android:state_pressed="true" />
     <!--默认状态-->
     <item android:drawable="@drawable/abc_btn_borderless_material" />
 

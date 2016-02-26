@@ -95,7 +95,7 @@ public class ContactUtils {
         String[] projection = {
                 ContactsContract.CommonDataKinds.Phone.NUMBER,//电话号码
                 ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME, //姓名
-                ContactsContract.CommonDataKinds.Phone.CONTACT_ID //联系人id TODO
+                ContactsContract.CommonDataKinds.Phone.CONTACT_ID //联系人id
         };
 
         Log.i(TAG, "返回带有所有联系人的游标getAllCursor:" + projection[0] + projection[1] + projection[2]);
