@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -26,7 +25,6 @@ import java.util.List;
 public class ContactsActivity extends Activity {
 
     private static final String KEY_NUMBER = "number";
-    private static final String TAG = "ContactsActivity";
     private ListView mListView;
     private List<ContactBean> mDatas;
     private ContactSelectedAdapter mAdapter;
@@ -56,7 +54,6 @@ public class ContactsActivity extends Activity {
                 ContactBean bean = mDatas.get(position);
                 Intent data = new Intent();
                 data.putExtra(KEY_NUMBER, bean.number);
-                //Log.i(TAG, "传一个电话号码回去：" + bean.number);
                 setResult(Activity.RESULT_OK, data);
                 finish();
             }
@@ -67,7 +64,6 @@ public class ContactsActivity extends Activity {
         mAdapter = new ContactSelectedAdapter();
         mListView.setAdapter(mAdapter);
         mDatas = ContactUtils.getAllContacts(ContactsActivity.this);
-        //Log.i(TAG, "拿到数据了 " + mDatas.size());
         mAdapter.notifyDataSetChanged();
     }
 
@@ -110,7 +106,6 @@ public class ContactsActivity extends Activity {
             if (icon != null) {
                 ivIcon.setImageBitmap(icon);
             }
-
             return convertView;
         }
     }

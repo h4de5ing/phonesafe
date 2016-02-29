@@ -81,10 +81,8 @@ public class ContactsActivity2 extends Activity {
             @Override
             public void run() {
                 SystemClock.sleep(2000);
-                //数据初始化,拿到所有数据
                 mCursor = ContactUtils.getAllCursor(ContactsActivity2.this);
                 Log.i(TAG, "mCursor中的内容：" + mCursor);
-                //更新adapter---UI
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {

@@ -119,7 +119,6 @@ public class BlackListEditActivity extends Activity {
         mType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                //按钮组的改变事件
                 switch (checkedId) {
                     case R.id.bl_rb_call:
                         type = 0;
